@@ -1,7 +1,34 @@
 /* =============================================
    AISHIA AGENCY — main.js
-   Cursor · Navbar · Particles · Reveal · Stats
+   Video · Cursor · Navbar · Particles · Reveal · Stats
    ============================================= */
+
+/* ── HERO VIDEO — seamless loop ── */
+(function initHeroVideo() {
+  const video = document.getElementById('heroBg');
+  if (!video) return;
+
+  // Force play as soon as enough data is buffered
+  video.addEventListener('canplaythrough', () => {
+    video.play().catch(() => {});
+  }, { once: true });
+
+  // Seamless loop: jump back slightly before the very end
+  // to avoid the gap the browser introduces at loop point
+  video.addEventListener('timeupdate', () => {
+    if (!video.duration) return;
+    if (video.currentTime >= video.duration - 0.18) {
+      video.currentTime = 0.01;
+    }
+  });
+
+  // Recover from unexpected pause (tab visibility changes, etc.)
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && video.paused) {
+      video.play().catch(() => {});
+    }
+  });
+})();
 
 /* ── CUSTOM CURSOR ── */
 (function initCursor() {
