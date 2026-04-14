@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Aishia Agency — Automatización con IA. Transformamos tu negocio con inteligencia artificial." />
+  <title>Aishia | Automatización con IA</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Exo+2:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- tsParticles -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js" defer></script>
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- CUSTOM CURSOR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-trail" id="cursorTrail"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#inicio" class="nav-logo">
+        <img src="assets/logo.png" alt="Aishia" class="logo-img" />
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#inicio" class="nav-link">Inicio</a></li>
+        <li><a href="#servicios" class="nav-link">Servicios</a></li>
+        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+        <li><a href="#testimonios" class="nav-link">Testimonios</a></li>
+        <li><a href="#contacto" class="nav-link nav-cta">Agendar Demo</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div id="tsparticles"></div>
+    <div class="hero-grid"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge reveal">
+        <span class="badge-dot"></span>
+        <span class="badge-text font-mono">IA AGENCY · EST. 2024</span>
+      </div>
+
+      <h1 class="hero-title reveal">
+        Transformamos tu negocio<br />con el <span class="gold-text glitch" data-text="poder de la IA">poder de la IA</span>
+      </h1>
+
+      <p class="hero-subtitle reveal">
+        Automatización inteligente que trabaja mientras tú descansas.<br />
+        Flujos de trabajo autónomos, chatbots avanzados y agentes de IA a medida.
+      </p>
+
+      <div class="hero-actions reveal">
+        <a href="#servicios" class="btn btn-primary">Ver Servicios</a>
+        <a href="#contacto" class="btn btn-outline">Hablar con nosotros</a>
+      </div>
+
+      <!-- Video Placeholder -->
+      <div class="video-placeholder reveal">
+        <div class="video-inner">
+          <div class="video-scanlines"></div>
+          <div class="video-icon">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="38" stroke="#D4AF37" stroke-width="1.5" stroke-dasharray="4 4"/>
+              <polygon points="32,24 32,56 60,40" fill="#D4AF37" opacity="0.9"/>
+            </svg>
+          </div>
+          <p class="video-label font-mono">// VIDEO GENERADO CON IA — PRÓXIMAMENTE</p>
+          <p class="video-sublabel">Seedance 2.0 · Generative Video</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="hero-stats reveal">
+      <div class="stat-item">
+        <span class="stat-number" data-target="50">0</span><span class="stat-suffix">+</span>
+        <span class="stat-label">Clientes</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-number" data-target="200">0</span><span class="stat-suffix">+</span>
+        <span class="stat-label">Automatizaciones</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-number" data-target="10000">0</span><span class="stat-suffix">+</span>
+        <span class="stat-label">Horas Ahorradas</span>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <span class="font-mono">SCROLL</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="section" id="servicios">
+    <div class="section-container">
+      <div class="section-header reveal">
+        <span class="section-tag font-mono">// 01 SERVICIOS</span>
+        <h2 class="section-title">¿Qué hacemos<span class="gold-text"> por ti?</span></h2>
+        <p class="section-desc">Soluciones de IA diseñadas para eliminar tareas repetitivas y escalar tu negocio sin contratar más personal.</p>
+      </div>
+
+      <div class="services-grid">
+
+        <div class="service-card reveal">
+          <div class="card-glow"></div>
+          <div class="card-icon">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="8" y="8" width="14" height="14" rx="2" stroke="#D4AF37" stroke-width="1.5"/>
+              <rect x="26" y="8" width="14" height="14" rx="2" stroke="#D4AF37" stroke-width="1.5"/>
+              <rect x="8" y="26" width="14" height="14" rx="2" stroke="#D4AF37" stroke-width="1.5"/>
+              <rect x="26" y="26" width="14" height="14" rx="2" stroke="#D4AF37" stroke-width="1.5"/>
+              <line x1="15" y1="22" x2="15" y2="26" stroke="#FFD700" stroke-width="1.5"/>
+              <line x1="33" y1="22" x2="33" y2="26" stroke="#FFD700" stroke-width="1.5"/>
+              <line x1="22" y1="15" x2="26" y2="15" stroke="#FFD700" stroke-width="1.5"/>
+              <line x1="22" y1="33" x2="26" y2="33" stroke="#FFD700" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="card-tag font-mono">01</div>
+          <h3 class="card-title">Automatización de Procesos</h3>
+          <p class="card-desc">Conectamos tus herramientas y eliminamos tareas manuales con flujos inteligentes usando n8n, Make y IA generativa.</p>
+          <div class="card-arrow">→</div>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="card-glow"></div>
+          <div class="card-icon">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="6" y="10" width="36" height="24" rx="4" stroke="#D4AF37" stroke-width="1.5"/>
+              <circle cx="18" cy="22" r="2" fill="#FFD700"/>
+              <circle cx="24" cy="22" r="2" fill="#FFD700"/>
+              <circle cx="30" cy="22" r="2" fill="#FFD700"/>
+              <path d="M20 34 L16 42 L32 42 L28 34" stroke="#D4AF37" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="card-tag font-mono">02</div>
+          <h3 class="card-title">Chatbots con IA</h3>
+          <p class="card-desc">Asistentes virtuales que atienden a tus clientes 24/7, responden preguntas, califican leads y agendan citas automáticamente.</p>
+          <div class="card-arrow">→</div>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="card-glow"></div>
+          <div class="card-icon">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="24" cy="18" r="8" stroke="#D4AF37" stroke-width="1.5"/>
+              <circle cx="24" cy="18" r="3" fill="#FFD700" opacity="0.8"/>
+              <path d="M10 38 C10 30 38 30 38 38" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="24" y1="26" x2="24" y2="30" stroke="#FFD700" stroke-width="1.5"/>
+              <circle cx="24" cy="31" r="1" fill="#FFD700"/>
+            </svg>
+          </div>
+          <div class="card-tag font-mono">03</div>
+          <h3 class="card-title">Agentes de IA</h3>
+          <p class="card-desc">Sistemas autónomos que razonan, deciden y ejecutan tareas complejas: investigación, generación de contenido, análisis de datos.</p>
+          <div class="card-arrow">→</div>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="card-glow"></div>
+          <div class="card-icon">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <polyline points="8,36 16,24 24,28 32,14 40,18" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="40" cy="18" r="2" fill="#FFD700"/>
+              <line x1="8" y1="40" x2="40" y2="40" stroke="#D4AF37" stroke-width="1" opacity="0.4"/>
+              <line x1="8" y1="8" x2="8" y2="40" stroke="#D4AF37" stroke-width="1" opacity="0.4"/>
+            </svg>
+          </div>
+          <div class="card-tag font-mono">04</div>
+          <h3 class="card-title">Consultoría Estratégica</h3>
+          <p class="card-desc">Analizamos tu negocio e identificamos las oportunidades de IA con mayor ROI. Desde la estrategia hasta la implementación.</p>
+          <div class="card-arrow">→</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE NOSOTROS -->
+  <section class="section section-dark" id="nosotros">
+    <div class="section-container">
+      <div class="about-grid">
+        <div class="about-text">
+          <div class="section-header reveal">
+            <span class="section-tag font-mono">// 02 NOSOTROS</span>
+            <h2 class="section-title">Pioneros en <span class="gold-text">IA aplicada</span> a negocios</h2>
+          </div>
+          <p class="about-para reveal">
+            Aishia nació con una misión clara: hacer que la inteligencia artificial sea accesible y rentable para empresas de todos los tamaños. Somos una agencia especializada en automatización con IA, con sede en México y clientes en toda Latinoamérica.
+          </p>
+          <p class="about-para reveal">
+            No vendemos tecnología por vender. Diseñamos soluciones que resuelven problemas reales: reducir costos operativos, acelerar procesos y liberar a tu equipo para lo que realmente importa.
+          </p>
+          <div class="about-values reveal">
+            <div class="value-item">
+              <span class="value-icon gold-text">◆</span>
+              <div>
+                <h4>Resultados medibles</h4>
+                <p>Cada implementación se mide en horas ahorradas y ROI real.</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <span class="value-icon gold-text">◆</span>
+              <div>
+                <h4>Implementación rápida</h4>
+                <p>De cero a producción en días, no en meses.</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <span class="value-icon gold-text">◆</span>
+              <div>
+                <h4>Soporte continuo</h4>
+                <p>No desaparecemos tras el deploy. Evolucionamos contigo.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-visual reveal">
+          <div class="kevin-frame">
+            <div class="hex-border">
+              <img src="assets/kevin.png" alt="Kevin Belier — Fundador de Aishia" class="kevin-photo" />
+            </div>
+            <div class="kevin-info">
+              <h3 class="kevin-name">Kevin Belier</h3>
+              <span class="kevin-role font-mono">Fundador & CEO · Aishia Agency</span>
+              <p class="kevin-bio">Especialista en automatización con IA, con experiencia implementando soluciones para negocios en Latinoamérica.</p>
+              <a href="https://linkedin.com/in/kevinrivm" target="_blank" rel="noopener" class="kevin-linkedin">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                LinkedIn
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section class="section" id="testimonios">
+    <div class="section-container">
+      <div class="section-header reveal">
+        <span class="section-tag font-mono">// 03 TESTIMONIOS</span>
+        <h2 class="section-title">Lo que dicen<span class="gold-text"> nuestros clientes</span></h2>
+        <p class="section-desc">Resultados reales de empresas que decidieron apostar por la automatización inteligente.</p>
+      </div>
+
+      <div class="testimonials-scroll">
+        <div class="testimonials-track">
+
+          <div class="testimonial-card reveal">
+            <div class="testimonial-quote">"</div>
+            <p class="testimonial-text">Aishia implementó un chatbot que atiende el 80% de las consultas de nuestros clientes sin intervención humana. Ahorramos más de 120 horas al mes desde el primer mes.</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">MR</div>
+              <div>
+                <h4 class="author-name">María R.</h4>
+                <span class="author-role font-mono">Directora Comercial · E-commerce México</span>
+              </div>
+              <div class="testimonial-stars">★★★★★</div>
+            </div>
+          </div>
+
+          <div class="testimonial-card reveal">
+            <div class="testimonial-quote">"</div>
+            <p class="testimonial-text">La automatización de nuestros procesos de facturación y seguimiento con n8n redujo los errores humanos a cero. El ROI fue inmediato. Totalmente recomendado.</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">CL</div>
+              <div>
+                <h4 class="author-name">Carlos L.</h4>
+                <span class="author-role font-mono">CEO · Agencia de Marketing Digital</span>
+              </div>
+              <div class="testimonial-stars">★★★★★</div>
+            </div>
+          </div>
+
+          <div class="testimonial-card reveal">
+            <div class="testimonial-quote">"</div>
+            <p class="testimonial-text">El agente de IA que crearon para generar propuestas automáticas transformó nuestra velocidad de respuesta. Pasamos de 3 días a 15 minutos por cotización.</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">AS</div>
+              <div>
+                <h4 class="author-name">Andrea S.</h4>
+                <span class="author-role font-mono">Fundadora · Consultora B2B</span>
+              </div>
+              <div class="testimonial-stars">★★★★★</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO / CTA -->
+  <section class="section section-cta" id="contacto">
+    <div class="section-container">
+      <div class="cta-box reveal">
+        <div class="cta-glow"></div>
+        <span class="section-tag font-mono">// 04 CONTACTO</span>
+        <h2 class="cta-title">¿Listo para <span class="gold-text">automatizar</span> tu negocio?</h2>
+        <p class="cta-desc">Agenda una llamada gratuita de 30 minutos y descubre cómo la IA puede transformar tu empresa.</p>
+
+        <div class="contact-links">
+          <a href="mailto:hola@aishiagency.tech" class="contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <span>hola@aishiagency.tech</span>
+          </a>
+          <a href="https://linkedin.com/in/kevinrivm" target="_blank" rel="noopener" class="contact-item">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <span>LinkedIn</span>
+          </a>
+          <a href="https://instagram.com/aishiagency" target="_blank" rel="noopener" class="contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            <span>Instagram</span>
+          </a>
+        </div>
+
+        <a href="mailto:hola@aishiagency.tech" class="btn btn-primary btn-lg">
+          Agendar Demo Gratuita
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-logo">
+        <img src="assets/logo.png" alt="Aishia" class="logo-img logo-sm" />
+        <span class="font-mono footer-tagline">// Automatización con IA</span>
+      </div>
+      <nav class="footer-nav">
+        <a href="#inicio">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#testimonios">Testimonios</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <p class="footer-copy font-mono">© 2025 Aishia Agency · Irapuato, México · Todos los derechos reservados</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
