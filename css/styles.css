@@ -236,54 +236,65 @@ body:hover .cursor { opacity: 1; }
    ============================================= */
 .hero {
   position: relative;
+  width: 100%;
   min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 8rem 2rem 4rem;
   overflow: hidden;
+  isolation: isolate;
 }
 
-/* VIDEO BACKGROUND */
+/* VIDEO BACKGROUND — classic full-cover technique */
 .hero-video-bg {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-  opacity: 0.45;
-  filter: brightness(0.7) saturate(1.2);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -3;
+  opacity: 0.5;
+  filter: brightness(0.65) saturate(1.3);
+  pointer-events: none;
 }
 
+/* Dark gradient overlay so text stays readable */
 .hero-video-overlay {
   position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(8, 8, 8, 0.2) 0%,
-    rgba(8, 8, 8, 0.6) 60%,
-    rgba(8, 8, 8, 0.88) 100%
-  );
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -2;
+  background:
+    radial-gradient(ellipse at 50% 40%, rgba(8,8,8,0.15) 0%, rgba(8,8,8,0.55) 55%, rgba(8,8,8,0.92) 100%);
+  pointer-events: none;
 }
 
+/* Particles & grid sit between video and content */
 #tsparticles {
   position: absolute;
-  inset: 0;
-  z-index: 2;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: -1;
+  pointer-events: none;
 }
 
 .hero-grid {
   position: absolute;
-  inset: 0;
-  z-index: 2;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: -1;
   background-image:
     linear-gradient(rgba(212, 175, 55, 0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(212, 175, 55, 0.04) 1px, transparent 1px);
   background-size: 60px 60px;
   animation: gridScroll 20s linear infinite;
+  pointer-events: none;
 }
 
 @keyframes gridScroll {
@@ -291,9 +302,10 @@ body:hover .cursor { opacity: 1; }
   100% { background-position: 60px 60px; }
 }
 
+/* All content layers sit on top */
 .hero-content {
   position: relative;
-  z-index: 3;
+  z-index: 1;
   text-align: center;
   max-width: 900px;
   width: 100%;
@@ -403,7 +415,7 @@ body:hover .cursor { opacity: 1; }
 /* HERO STATS */
 .hero-stats {
   position: relative;
-  z-index: 3;
+  z-index: 1;
   display: flex;
   align-items: center;
   gap: 3rem;
@@ -459,7 +471,7 @@ body:hover .cursor { opacity: 1; }
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 3;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
