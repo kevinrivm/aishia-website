@@ -56,6 +56,60 @@ button { font: inherit; }
 .gold { color: var(--gold); }
 
 /* =============================================
+   ANIMATED LINE BACKGROUND
+   ============================================= */
+.aishia-line-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: transparent;
+  isolation: isolate;
+}
+.aishia-line-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.13;
+  background-image:
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size: 120px 120px;
+  -webkit-mask-image: radial-gradient(circle at center, #000 0 44%, transparent 76%);
+          mask-image: radial-gradient(circle at center, #000 0 44%, transparent 76%);
+}
+.aishia-line-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.72;
+  background:
+    radial-gradient(circle at var(--glow-x, 78%) var(--glow-y, 58%), rgba(232,197,108,0.18), transparent 24rem),
+    radial-gradient(circle at var(--glow-x, 78%) var(--glow-y, 58%), rgba(245,245,245,0.08), transparent 18rem);
+  mix-blend-mode: screen;
+}
+#aishia-line-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.92;
+  mix-blend-mode: screen;
+}
+@media (max-width: 760px) {
+  #aishia-line-canvas { opacity: 0.58; }
+  .aishia-line-bg::before { opacity: 0.08; background-size: 76px 76px; }
+  .aishia-line-bg::after  { opacity: 0.46; }
+}
+
+/* Keep all content above the animated background */
+.navbar, .hero, .section, .footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* =============================================
    LAYOUT — full-bleed editorial grid
    ============================================= */
 .shell {
@@ -205,28 +259,6 @@ button { font: inherit; }
   padding: 140px 0 60px;
   overflow: hidden;
   isolation: isolate;
-}
-
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  pointer-events: none;
-}
-
-.hero-bg video,
-.hero-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.6;
-}
-
-.hero-bg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.7) 60%, rgba(10,10,10,0.95) 100%);
 }
 
 .hero-eyebrow {

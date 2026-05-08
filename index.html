@@ -12,8 +12,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;450;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- GSAP for animated background -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 </head>
 <body>
+
+  <!-- ANIMATED LINE BACKGROUND -->
+  <div class="aishia-line-bg" aria-hidden="true">
+    <canvas id="aishia-line-canvas"></canvas>
+  </div>
 
   <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
@@ -36,11 +45,6 @@
 
   <!-- HERO -->
   <header class="hero" id="inicio">
-    <!-- HEYGEN background placeholder — replace src or embed when ready -->
-    <div class="hero-bg" id="heroBg" aria-hidden="true">
-      <!-- <video autoplay loop muted playsinline><source src="assets/hero-bg.mp4" type="video/mp4"></video> -->
-    </div>
-
     <div class="shell">
       <div class="hero-eyebrow reveal">
         <span class="dot"></span>
@@ -334,5 +338,16 @@
   </footer>
 
   <script src="js/main.js"></script>
+
+  <!-- LINE BACKGROUND ANIMATION -->
+  <script>
+  (()=>{const canvas=document.getElementById("aishia-line-canvas"),bg=document.querySelector(".aishia-line-bg");if(!canvas||!bg)return;const ctx=canvas.getContext("2d"),reduce=matchMedia("(prefers-reduced-motion: reduce)").matches,state={scroll:0,time:0};let width=0,height=0,dpr=1,raf=0;const clamp=(v,min,max)=>Math.max(min,Math.min(max,v)),lerp=(a,b,t)=>a+(b-a)*t,smooth=(a,b,x)=>{const t=clamp((x-a)/(b-a),0,1);return t*t*(3-2*t)},gauss=(x,c,w)=>Math.exp(-Math.pow((x-c)/w,2));
+  function resize(){dpr=Math.min(devicePixelRatio||1,2);width=innerWidth;height=innerHeight;canvas.width=Math.floor(width*dpr);canvas.height=Math.floor(height*dpr);canvas.style.width=width+"px";canvas.style.height=height+"px";ctx.setTransform(dpr,0,0,dpr,0,0)}
+  function anchor(p){const m=width<760,rx=m?width*1.02:width*.88,lx=m?width*-.08:width*-.02,mrx=m?width*1:width*.92,flx=m?width*.02:width*.08,a=smooth(.07,.24,p),b=smooth(.34,.56,p),c=smooth(.68,.9,p),x1=lerp(rx,lx,a),x2=lerp(x1,mrx,b);return{x:lerp(x2,flx,c),y:lerp(lerp(lerp(height*.78,height*.48,a),height*.56,b),height*.52,c)}}
+  function pointFor(mode,t,i,total,p){const layer=i-(total-1)/2,ln=layer/total,phase=state.time*.00045,amp=lerp(height*.09,height*.17,smooth(.1,.56,p)),signal=Math.sin(t*8.5+layer*.1+phase)*.34+Math.sin(t*17-phase*2+i*.16)*.13+gauss(t,-.38,.13)*1.2-gauss(t,.04,.1)*1.55+gauss(t,.34,.16)*.88;if(mode===0)return{x:t*width*.34,y:layer*6.5+signal*amp*(.32+Math.abs(ln)*1.8)};if(mode===1){const bend=Math.sin(t*3.1+i*.12)*34+signal*42;return{x:layer*7.4+bend+Math.sin(t*9+phase)*10,y:t*height*.64+Math.sin(t*4-layer*.08)*24}}const r=height*.24+layer*4.8,ang=t*Math.PI*1.46+Math.PI*.04,dent=signal*height*.028;return{x:Math.cos(ang)*(r*1.36+dent)+layer*2.4,y:Math.sin(ang)*(r*.7+dent*.62)}}
+  function blended(t,i,total,p){const a=pointFor(0,t,i,total,p),b=pointFor(1,t,i,total,p),c=pointFor(2,t,i,total,p),v=smooth(.08,.28,p),arc=smooth(.62,.94,p);return{x:lerp(lerp(a.x,b.x,v),c.x,arc),y:lerp(lerp(a.y,b.y,v),c.y,arc)}}
+  function draw(p){const lines=width<760?26:42,pts=width<760?92:150,o=anchor(p),rot=lerp(lerp(0,-.22,smooth(.18,.44,p)),.1,smooth(.66,.92,p)),scale=lerp(1,width<760?.74:.92,smooth(.64,.94,p)),mixBase=smooth(.18,.56,p),alpha=width<760?.34:.5;bg.style.setProperty("--glow-x",`${o.x/width*100}%`);bg.style.setProperty("--glow-y",`${o.y/height*100}%`);ctx.save();ctx.translate(o.x,o.y);ctx.rotate(rot);ctx.scale(scale,scale);ctx.lineCap="round";ctx.lineJoin="round";for(let i=0;i<lines;i++){const mix=clamp(mixBase+(i/lines-.5)*.28,0,1),r=Math.round(lerp(245,232,mix)),g=Math.round(lerp(245,197,mix)),b=Math.round(lerp(245,108,mix)),a=alpha*(.35+i/lines*.9);ctx.beginPath();for(let j=0;j<pts;j++){const t=lerp(-1,1,j/(pts-1)),pt=blended(t,i,lines,p);if(j===0)ctx.moveTo(pt.x,pt.y);else ctx.lineTo(pt.x,pt.y)}ctx.strokeStyle=`rgba(${r}, ${g}, ${b}, ${a})`;ctx.lineWidth=i%7===0?1.1:.72;ctx.stroke()}ctx.globalCompositeOperation="lighter";ctx.shadowBlur=width<760?18:32;ctx.shadowColor="rgba(232,197,108,.55)";ctx.strokeStyle=`rgba(232,197,108,${width<760?.22:.32})`;ctx.lineWidth=1.3;ctx.beginPath();for(let j=0;j<pts;j++){const t=lerp(-1,1,j/(pts-1)),pt=blended(t,Math.floor(lines*.55),lines,p);if(j===0)ctx.moveTo(pt.x,pt.y);else ctx.lineTo(pt.x,pt.y)}ctx.stroke();ctx.restore()}
+  function frame(time){state.time=reduce?0:time;ctx.clearRect(0,0,width,height);draw(reduce?.18:state.scroll);if(!reduce)raf=requestAnimationFrame(frame)}resize();addEventListener("resize",resize);if(window.gsap&&window.ScrollTrigger&&!reduce){gsap.registerPlugin(ScrollTrigger);gsap.to(state,{scroll:1,ease:"none",scrollTrigger:{trigger:document.body,start:"top top",end:"bottom bottom",scrub:.7}})}else{addEventListener("scroll",()=>{const max=Math.max(1,document.documentElement.scrollHeight-innerHeight);state.scroll=clamp(scrollY/max,0,1);if(reduce)frame(0)})}raf=requestAnimationFrame(frame);addEventListener("pagehide",()=>cancelAnimationFrame(raf))})();
+  </script>
 </body>
 </html>
