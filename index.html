@@ -248,48 +248,88 @@
   </section>
 
   <!-- CONTACTO -->
-  <section class="section cta" id="contacto">
+  <section class="section" id="contacto">
     <div class="shell">
       <div class="section-head">
         <div class="section-meta">
           <span class="section-index">— 04</span>
           <span class="section-kicker">Contacto</span>
         </div>
-        <div></div>
+        <div>
+          <h2 class="section-title">
+            ¿Listo para <span class="gold-accent">automatizar</span> tu negocio?
+          </h2>
+          <p class="section-lede">
+            Agenda una llamada gratuita de 30 minutos. Identificamos qué procesos puedes automatizar y cuál es el ROI estimado.
+          </p>
+        </div>
       </div>
 
-      <h2 class="cta-headline reveal">
-        ¿Listo para <span class="gold-accent">automatizar</span> tu negocio?
-      </h2>
+      <div class="contact-layout">
+        <!-- FORM -->
+        <form class="contact-form reveal" id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-field">
+              <label class="form-label" for="cf-name">Nombre</label>
+              <input class="form-input" id="cf-name" name="name" type="text" placeholder="Tu nombre completo" required />
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="cf-email">Email</label>
+              <input class="form-input" id="cf-email" name="email" type="email" placeholder="tu@empresa.com" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label class="form-label" for="cf-phone">Teléfono</label>
+              <input class="form-input" id="cf-phone" name="phone" type="tel" placeholder="+52 000 000 0000" required />
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="cf-type">Tipo de negocio</label>
+              <select class="form-input form-select" id="cf-type" name="businessType" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option value="agencia">Agencia</option>
+                <option value="consultor">Consultor</option>
+                <option value="integrador">Integrador</option>
+                <option value="freelancer">Freelancer</option>
+                <option value="otro">Otro</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="cf-message">¿En qué podemos ayudarte? <span class="form-optional">(opcional)</span></label>
+            <textarea class="form-input form-textarea" id="cf-message" name="message" placeholder="Cuéntanos brevemente qué procesos quieres automatizar..." rows="4"></textarea>
+          </div>
+          <div class="form-footer">
+            <button type="submit" class="btn btn-primary btn-arrow" id="cfSubmit">Agendar demo gratuita</button>
+            <p class="form-status" id="cfStatus" aria-live="polite"></p>
+          </div>
+        </form>
 
-      <div class="cta-row reveal" data-delay="1">
-        <div>
-          <p class="cta-lede">
-            Agenda una llamada gratuita de 30 minutos. Identificamos juntos qué procesos puedes automatizar y cuál es el ROI estimado.
-          </p>
-          <ul class="contact-list">
-            <li>
-              <a href="mailto:hola@aishiagency.tech" class="contact-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                hola@aishiagency.tech
-              </a>
-            </li>
-            <li>
-              <a href="https://linkedin.com/in/kevinrivm" target="_blank" rel="noopener" class="contact-item">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                LinkedIn / kevinrivm
-              </a>
-            </li>
-            <li>
-              <a href="https://instagram.com/aishiagency" target="_blank" rel="noopener" class="contact-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-                Instagram / aishiagency
-              </a>
-            </li>
-          </ul>
+        <!-- SIDE INFO -->
+        <div class="contact-side reveal" data-delay="1">
+          <div class="contact-side-block">
+            <span class="form-label">Email directo</span>
+            <a href="mailto:hola@aishiagency.tech" class="contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              hola@aishiagency.tech
+            </a>
+          </div>
+          <div class="contact-side-block">
+            <span class="form-label">Redes</span>
+            <a href="https://linkedin.com/in/kevinrivm" target="_blank" rel="noopener" class="contact-item">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              LinkedIn
+            </a>
+            <a href="https://instagram.com/aishiagency" target="_blank" rel="noopener" class="contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              Instagram
+            </a>
+          </div>
+          <div class="contact-side-block">
+            <span class="form-label">Sede</span>
+            <p class="contact-meta">Irapuato, México<br />Lun – Vie · 9:00 – 18:00</p>
+          </div>
         </div>
-
-        <a href="mailto:hola@aishiagency.tech" class="btn btn-primary btn-arrow">Agendar demo gratuita</a>
       </div>
     </div>
   </section>

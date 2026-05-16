@@ -90,6 +90,47 @@
   obs.observe(counters[0]);
 })();
 
+/* ── CONTACT FORM ── */
+(function initContactForm() {
+  const form   = document.getElementById('contactForm');
+  const btn    = document.getElementById('cfSubmit');
+  const status = document.getElementById('cfStatus');
+  if (!form) return;
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    btn.setAttribute('data-loading', '');
+    btn.textContent = 'Enviando…';
+    status.textContent = '';
+    status.className = 'form-status';
+
+    const data = Object.fromEntries(new FormData(form));
+    data.timestamp = new Date().toISOString();
+    data.source    = 'website_partner_form';
+
+    try {
+      const res = await fetch('https://n8n.aishiagency.tech/webhook/websiteForm', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error(res.status);
+
+      status.textContent = '¡Solicitud recibida! Te contactaremos pronto.';
+      status.className   = 'form-status success';
+      form.reset();
+    } catch {
+      status.textContent = 'Hubo un problema al enviar. Intenta nuevamente o escríbenos directamente.';
+      status.className   = 'form-status error';
+    } finally {
+      btn.removeAttribute('data-loading');
+      btn.textContent = 'Agendar demo gratuita';
+    }
+  });
+})();
+
 /* ── ACTIVE NAV LINK ON SCROLL ── */
 (function initActiveNav() {
   const sections = document.querySelectorAll('section[id], header[id]');

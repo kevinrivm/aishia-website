@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Conectar WhatsApp Business — Aishia</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0A0A0A;
+      --surface:   #141414;
+      --line:      rgba(255,255,255,0.10);
+      --text:      #F5F5F5;
+      --muted:     #8A8A8A;
+      --dim:       #444444;
+      --gold:      #D4AF37;
+      --gold-soft: rgba(212,175,55,0.14);
+      --error:     #e05252;
+      --success:   #4caf7d;
+    }
+
+    html { -webkit-font-smoothing: antialiased; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 20px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 520px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 48px 40px;
+    }
+
+    .card-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+
+    .card-logo img { height: 26px; width: auto; }
+
+    .card-logo-word {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .card-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .card-desc {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 36px;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 36px;
+      padding: 20px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .step-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--gold);
+      background: var(--gold-soft);
+      border-radius: 4px;
+      padding: 2px 6px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .btn-wa {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 14px 24px;
+      background: var(--text);
+      color: var(--bg);
+      border: none;
+      border-radius: 999px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 180ms ease, opacity 180ms ease;
+    }
+
+    .btn-wa:hover { background: var(--gold); }
+    .btn-wa:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .btn-wa svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+    .status-box {
+      margin-top: 20px;
+      padding: 14px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      line-height: 1.5;
+      display: none;
+    }
+
+    .status-box.visible { display: block; }
+    .status-box.loading { background: rgba(255,255,255,0.04); border: 1px solid var(--line); color: var(--muted); }
+    .status-box.success { background: rgba(76,175,125,0.10); border: 1px solid rgba(76,175,125,0.3); color: var(--success); }
+    .status-box.error   { background: rgba(224,82,82,0.10);  border: 1px solid rgba(224,82,82,0.3);  color: var(--error); }
+
+    .status-title { font-weight: 500; margin-bottom: 4px; }
+    .status-sub   { font-size: 13px; opacity: 0.8; }
+
+    .card-footer {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      font-size: 13px;
+      color: var(--dim);
+      text-align: center;
+    }
+
+    .card-footer a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+
+    @media (max-width: 560px) {
+      .card { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="card-logo">
+      <img src="assets/logo.png" alt="Aishia" />
+      <span class="card-logo-word">Aishia</span>
+    </div>
+
+    <p class="card-eyebrow">WhatsApp Business</p>
+    <h1>Conecta tu cuenta de WhatsApp</h1>
+    <p class="card-desc">
+      Vincula tu número de WhatsApp Business a la plataforma de Aishia. El proceso toma menos de 3 minutos y se hace directamente con Meta.
+    </p>
+
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">01</span>
+        <span>Haz clic en el botón de abajo para abrir el asistente de Meta.</span>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <span>Inicia sesión con tu cuenta de Facebook vinculada a tu empresa.</span>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <span>Selecciona o crea tu cuenta de WhatsApp Business y confirma los permisos.</span>
+      </div>
+    </div>
+
+    <button class="btn-wa" id="waBtn" disabled>
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      Conectar WhatsApp Business
+    </button>
+
+    <div class="status-box" id="statusBox">
+      <p class="status-title" id="statusTitle"></p>
+      <p class="status-sub" id="statusSub"></p>
+    </div>
+
+    <p class="card-footer">
+      ¿Problemas? Escríbenos a <a href="mailto:hola@aishiagency.tech">hola@aishiagency.tech</a>
+    </p>
+  </div>
+
+  <script>
+  (function() {
+    const CLIENT_ID      = new URLSearchParams(location.search).get('client') || '';
+    const APP_ID         = '1340668077733223';
+    const CONFIG_ID      = '25055190914137251';
+    const WEBHOOK_CODE   = 'https://nprod.aishiagency.tech/webhook/whatsapp-login-code-7f3a9c';
+    const WEBHOOK_EVENTS = 'https://nprod.aishiagency.tech/webhook/whatsapp-onboarding-finish-7f3a9c';
+    const SECRET_HEADER  = { 'x-aishia-secret': 'k9Fh2+zPq1LwX7mQjR5tZy8vN0aB3cD4eFh6gH7iJ8kL9mN0oPqR' };
+
+    const btn       = document.getElementById('waBtn');
+    const statusBox = document.getElementById('statusBox');
+    const statusTitle = document.getElementById('statusTitle');
+    const statusSub   = document.getElementById('statusSub');
+
+    function setStatus(type, title, sub) {
+      statusBox.className = 'status-box visible ' + type;
+      statusTitle.textContent = title;
+      statusSub.textContent   = sub || '';
+    }
+
+    async function postToN8n(url, payload) {
+      try {
+        await fetch(url, {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json', ...SECRET_HEADER },
+          body:    JSON.stringify(payload),
+        });
+      } catch (_) { /* non-blocking */ }
+    }
+
+    /* Listen for intermediate WA_EMBEDDED_SIGNUP events from Meta iframe */
+    window.addEventListener('message', async function(event) {
+      if (!event.origin.endsWith('facebook.com')) return;
+      let data;
+      try { data = JSON.parse(event.data); } catch (_) { return; }
+      if (data.type === 'WA_EMBEDDED_SIGNUP') {
+        await postToN8n(WEBHOOK_EVENTS, {
+          client:         CLIENT_ID,
+          embedded_event: data,
+          received_at:    new Date().toISOString(),
+        });
+      }
+    });
+
+    function fbLoginCallback(response) {
+      if (response.authResponse && response.authResponse.code) {
+        setStatus('loading', 'Conectando…', 'Estamos registrando tu cuenta de WhatsApp. Esto solo toma un momento.');
+        postToN8n(WEBHOOK_CODE, {
+          client:      CLIENT_ID,
+          code:        response.authResponse.code,
+          received_at: new Date().toISOString(),
+        }).then(() => {
+          setStatus('success', '¡Cuenta conectada!', 'Tu WhatsApp Business quedó vinculado correctamente. Puedes cerrar esta ventana.');
+          btn.disabled = true;
+        });
+      } else {
+        setStatus('error',
+          response.status === 'unknown' ? 'Proceso cancelado' : 'No se pudo conectar',
+          'Cierra esta ventana e inténtalo de nuevo, o contáctanos si el problema persiste.'
+        );
+        postToN8n(WEBHOOK_EVENTS, {
+          client:      CLIENT_ID,
+          embedded_event: { type: 'WA_EMBEDDED_SIGNUP', error: response },
+          received_at: new Date().toISOString(),
+        });
+      }
+    }
+
+    btn.addEventListener('click', function() {
+      window.FB.login(fbLoginCallback, {
+        config_id:                      CONFIG_ID,
+        response_type:                  'code',
+        override_default_response_type: true,
+        extras: {
+          setup:              {},
+          featureType:        'whatsapp_business_app_onboarding',
+          sessionInfoVersion: '3',
+        },
+      });
+    });
+
+    /* Load FB SDK */
+    window.fbAsyncInit = function() {
+      window.FB.init({
+        appId:            APP_ID,
+        autoLogAppEvents: true,
+        xfbml:            true,
+        version:          'v24.0',
+      });
+      btn.disabled = false;
+    };
+
+    (function() {
+      const s = document.createElement('script');
+      s.src         = 'https://connect.facebook.net/en_US/sdk.js';
+      s.async       = true;
+      s.defer       = true;
+      s.crossOrigin = 'anonymous';
+      document.body.appendChild(s);
+    })();
+  })();
+  </script>
+
+</body>
+</html>
