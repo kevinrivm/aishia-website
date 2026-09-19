@@ -911,6 +911,18 @@ button { font: inherit; }
 }
 .footer-col a:hover { color: var(--text); }
 
+.footer-legal {
+  padding: 24px 0;
+  border-top: 1px solid var(--line, rgba(255,255,255,0.08));
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--text-muted, rgba(255,255,255,0.55));
+}
+.footer-legal p { margin: 0 0 6px; }
+.footer-legal strong { color: var(--text); font-weight: 500; }
+.footer-legal a { color: inherit; }
+.footer-legal a:hover { color: var(--text); }
+
 .footer-bottom {
   padding-top: 24px;
   display: flex;
