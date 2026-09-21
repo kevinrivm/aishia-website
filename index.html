@@ -3,336 +3,200 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Aishia Agency — Automatización con IA. Diseñamos agentes y flujos autónomos que trabajan por ti." />
-  <title>Aishia — Automatización con IA</title>
+  <title>Kevin Belier — IA aplicada a WhatsApp y Meta</title>
+  <meta name="description" content="Kevin Belier: Tech Provider verificado de Meta, creador de Vocero y fundador de Vibe Community VIP. Te enseño a construir y vender agentes de IA para WhatsApp." />
+  <link rel="canonical" href="https://kevinbelier.cloud/" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23121212'/%3E%3Ctext x='32' y='41' font-family='Arial,sans-serif' font-size='26' font-weight='700' fill='%23B49B50' text-anchor='middle'%3EKB%3C/text%3E%3C/svg%3E" />
 
-  <!-- Fonts -->
+  <meta property="og:title" content="Kevin Belier — IA aplicada a WhatsApp y Meta" />
+  <meta property="og:description" content="Tech Provider verificado de Meta, creador de Vocero y fundador de Vibe Community VIP." />
+  <meta property="og:image" content="https://kevinbelier.cloud/assets/kevin.png" />
+  <meta property="og:url" content="https://kevinbelier.cloud/" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;450;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/site.css" />
+  <script>document.documentElement.classList.add('js');</script>
 
-  <link rel="stylesheet" href="css/styles.css" />
-
-  <!-- GSAP for animated background -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Organization","name":"Kevin Belier IA","alternateName":"Aishia","legalName":"Kevin Miguel Rivas Moreno","taxID":"RIMK960321LM8","url":"https://kevinbelier.cloud/","email":"hola@aishiagency.tech","telephone":"+52 462 134 9768","address":{"@type":"PostalAddress","streetAddress":"Colombia 279, Col. La Hacienda","addressLocality":"Irapuato","addressRegion":"Guanajuato","postalCode":"36650","addressCountry":"MX"}}
+  {"@context":"https://schema.org","@type":"Person","name":"Kevin Belier","alternateName":"Kevin Belier IA","url":"https://kevinbelier.cloud/","image":"https://kevinbelier.cloud/assets/kevin.png","jobTitle":"Tech Provider de Meta y creador de contenido sobre IA","sameAs":["https://www.youtube.com/@KevinBelier","https://www.skool.com/vibe-community-vip","https://linkedin.com/in/kevinrivm","https://github.com/kevinrivm"],"telephone":"+52 462 134 9768","address":{"@type":"PostalAddress","streetAddress":"Colombia 279, Col. La Hacienda","addressLocality":"Irapuato","addressRegion":"Guanajuato","postalCode":"36650","addressCountry":"MX"}}
   </script>
 </head>
 <body>
 
-  <!-- ANIMATED LINE BACKGROUND -->
-  <div class="aishia-line-bg" aria-hidden="true">
-    <canvas id="aishia-line-canvas"></canvas>
-  </div>
-
-  <!-- NAVBAR -->
-  <nav class="navbar" id="navbar">
+  <!-- NAV -->
+  <nav class="nav">
     <div class="shell nav-inner">
-      <a href="#inicio" class="nav-logo">
-        <img src="assets/logo.png" alt="Aishia" class="logo-img" />
-        <span class="logo-word">Aishia</span>
+      <a href="/" class="brand" aria-label="Kevin Belier — inicio">
+        <span class="brand-mark">KB</span>
+        <span>Kevin Belier</span>
       </a>
-      <button class="nav-toggle" id="navToggle" aria-label="Menú">
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links" id="navLinks">
-        <li><a href="#servicios" class="nav-link">Servicios</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#testimonios" class="nav-link">Testimonios</a></li>
-        <li><a href="#contacto" class="nav-link nav-cta">Agendar demo</a></li>
+        <li><a href="#que-hago">Qué hago</a></li>
+        <li><a href="#comunidad">Comunidad</a></li>
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="__LANDING_URL__" class="btn btn-primary btn-sm">Regístrate al live</a></li>
       </ul>
     </div>
   </nav>
 
   <!-- HERO -->
-  <header class="hero" id="inicio">
-    <div class="shell">
-      <div class="hero-eyebrow reveal">
-        <span class="dot"></span>
-        <span class="font-mono">IA Agency · Est. 2024</span>
-      </div>
-
-      <h1 class="hero-headline reveal" data-delay="1">
-        Automatización <span class="gold-accent">inteligente.</span><br />
-        Resultados medibles.
-      </h1>
-
-      <div class="hero-foot reveal" data-delay="2">
-        <p class="hero-lede">
-          Diseñamos agentes de IA y flujos autónomos que ejecutan el trabajo repetitivo de tu negocio — para que tu equipo se enfoque en lo que importa.
-        </p>
-
-        <div class="hero-stats">
-          <div class="stat">
-            <span class="stat-num" data-target="50">0<span class="suffix">+</span></span>
-            <span class="stat-label">Clientes</span>
-          </div>
-          <div class="stat">
-            <span class="stat-num" data-target="200">0<span class="suffix">+</span></span>
-            <span class="stat-label">Automatizaciones</span>
-          </div>
-          <div class="stat">
-            <span class="stat-num" data-target="10000">0<span class="suffix">+</span></span>
-            <span class="stat-label">Horas ahorradas</span>
-          </div>
+  <header class="hero">
+    <div class="shell hero-grid">
+      <div>
+        <span class="eyebrow mono reveal">Tech Provider verificado de Meta</span>
+        <h1 class="reveal">Construye y vende agentes de IA para <span class="gold">WhatsApp</span>.</h1>
+        <p class="hero-lede reveal">Soy Kevin Belier. Enseño a desarrolladores y emprendedores a conectar WhatsApp por la vía oficial de Meta, montar su propio CRM con IA y cerrar su primer cliente. No te enseño lo que leí: te enseño lo que cobro.</p>
+        <div class="hero-actions reveal">
+          <a href="__LANDING_URL__" class="btn btn-primary">Regístrate al live gratuito <span class="arrow">→</span></a>
+          <a href="https://www.youtube.com/@KevinBelier" target="_blank" rel="noopener" class="btn btn-ghost">Ver el canal de YouTube</a>
         </div>
-
-        <div class="hero-actions">
-          <a href="#contacto" class="btn btn-primary btn-arrow">Agendar demo</a>
-          <a href="#servicios" class="btn btn-ghost">Ver servicios</a>
+        <p class="hero-note reveal">Live de reapertura de Vibe Community VIP · miércoles 30 de septiembre.</p>
+      </div>
+      <div class="hero-photo reveal">
+        <img src="/assets/kevin.png" alt="Kevin Belier" width="640" height="640" />
+        <div class="hero-badge">
+          <strong>Creador de Vocero</strong>
+          <span>CRM open source con agente de IA</span>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- SERVICIOS -->
-  <section class="section" id="servicios">
-    <div class="shell">
-      <div class="section-head">
-        <div class="section-meta">
-          <span class="section-index">— 01</span>
-          <span class="section-kicker">Servicios</span>
-        </div>
-        <div>
-          <h2 class="section-title">
-            Soluciones de IA <span class="gold-accent">a medida</span> para escalar sin contratar más.
-          </h2>
-          <p class="section-lede">
-            Cada implementación está diseñada para reducir costo operativo y acelerar procesos. Nada genérico — todo medible.
-          </p>
-        </div>
-      </div>
-
-      <div class="services">
-        <div class="service-row reveal">
-          <span class="service-num">01</span>
-          <h3 class="service-name">Automatización de procesos</h3>
-          <p class="service-desc">Conectamos tus herramientas y eliminamos tareas manuales con flujos inteligentes en n8n, Make e IA generativa.</p>
-          <span class="service-arrow">→</span>
-        </div>
-
-        <div class="service-row reveal">
-          <span class="service-num">02</span>
-          <h3 class="service-name">Chatbots con IA</h3>
-          <p class="service-desc">Asistentes que atienden 24/7, califican leads y agendan citas — integrados a tu CRM y canales actuales.</p>
-          <span class="service-arrow">→</span>
-        </div>
-
-        <div class="service-row reveal">
-          <span class="service-num">03</span>
-          <h3 class="service-name">Agentes de IA</h3>
-          <p class="service-desc">Sistemas autónomos que razonan, deciden y ejecutan tareas complejas: investigación, contenido, análisis y soporte.</p>
-          <span class="service-arrow">→</span>
-        </div>
-
-        <div class="service-row reveal">
-          <span class="service-num">04</span>
-          <h3 class="service-name">Consultoría estratégica</h3>
-          <p class="service-desc">Identificamos las oportunidades de IA con mayor ROI en tu operación y construimos la hoja de ruta para implementarlas.</p>
-          <span class="service-arrow">→</span>
-        </div>
-      </div>
+  <!-- STATS -->
+  <section class="stats" aria-label="En números">
+    <div class="shell stats-grid">
+      <div class="stat"><span class="stat-num">13.5 mil</span><span class="stat-label">suscriptores en YouTube</span></div>
+      <div class="stat"><span class="stat-num">+200</span><span class="stat-label">miembros en Vibe Community VIP</span></div>
+      <div class="stat"><span class="stat-num">Tech Provider</span><span class="stat-label">verificado por Meta para WhatsApp</span></div>
     </div>
   </section>
 
-  <!-- NOSOTROS -->
-  <section class="section" id="nosotros">
+  <!-- QUÉ HAGO -->
+  <section class="section" id="que-hago">
     <div class="shell">
-      <div class="section-head">
-        <div class="section-meta">
-          <span class="section-index">— 02</span>
-          <span class="section-kicker">Nosotros</span>
-        </div>
-        <div>
-          <h2 class="section-title">
-            Pioneros en <span class="gold-accent">IA aplicada</span> a negocios reales.
-          </h2>
-        </div>
+      <div class="section-head reveal">
+        <span class="mono gold">Qué hago</span>
+        <h2>Tres formas de aprender conmigo.</h2>
+        <p>Todo gira alrededor de lo mismo: agentes de IA que atienden y venden por WhatsApp, Instagram y Messenger.</p>
       </div>
 
-      <div class="about">
-        <div class="about-prose">
-          <p class="reveal">
-            <strong>Aishia nació con una misión clara:</strong> hacer que la inteligencia artificial sea accesible y rentable para empresas de todos los tamaños.
-          </p>
-          <p class="reveal" data-delay="1">
-            Somos una agencia especializada en automatización con IA, con sede en México y clientes en toda Latinoamérica. No vendemos tecnología por vender — diseñamos soluciones que resuelven problemas reales.
-          </p>
-
-          <div class="values">
-            <div class="value reveal">
-              <span class="value-num">01</span>
-              <div>
-                <h4>Resultados medibles</h4>
-                <p>Cada implementación se mide en horas ahorradas y ROI real, no en demos vistosos.</p>
-              </div>
-            </div>
-            <div class="value reveal" data-delay="1">
-              <span class="value-num">02</span>
-              <div>
-                <h4>Implementación rápida</h4>
-                <p>De cero a producción en días, no en meses. Pequeños lanzamientos, mejoras continuas.</p>
-              </div>
-            </div>
-            <div class="value reveal" data-delay="2">
-              <span class="value-num">03</span>
-              <div>
-                <h4>Soporte continuo</h4>
-                <p>No desaparecemos tras el deploy. Iteramos, medimos y evolucionamos contigo.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <aside class="founder reveal">
-          <div class="founder-photo">
-            <img src="assets/kevin.png" alt="Kevin Belier — Fundador de Aishia" />
-          </div>
-          <div class="founder-meta">
-            <h3 class="founder-name">Kevin Belier</h3>
-            <span class="founder-role">Fundador & CEO · Aishia</span>
-            <p class="founder-bio">Especialista en automatización con IA, con experiencia implementando soluciones para negocios en Latinoamérica.</p>
-            <a href="https://linkedin.com/in/kevinrivm" target="_blank" rel="noopener" class="founder-link">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-              LinkedIn
-            </a>
-          </div>
-        </aside>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIOS -->
-  <section class="section" id="testimonios">
-    <div class="shell">
-      <div class="section-head">
-        <div class="section-meta">
-          <span class="section-index">— 03</span>
-          <span class="section-kicker">Testimonios</span>
-        </div>
-        <div>
-          <h2 class="section-title">
-            Lo que dicen <span class="gold-accent">nuestros clientes.</span>
-          </h2>
-          <p class="section-lede">
-            Resultados reales de empresas que apostaron por la automatización inteligente.
-          </p>
-        </div>
-      </div>
-
-      <div class="quotes">
-        <article class="quote reveal">
-          <p class="quote-text">La automatización de nuestros procesos de facturación y seguimiento con n8n redujo los errores humanos a cero. El ROI fue inmediato.</p>
-          <div class="quote-author">
-            <span class="quote-name">Carlos L.</span>
-            <span class="quote-role">CEO · Agencia de Marketing Digital</span>
-          </div>
+      <div class="cards">
+        <article class="card reveal">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/></svg></div>
+          <h3>YouTube</h3>
+          <p>Tutoriales gratuitos cada semana: WhatsApp Cloud API, agentes con Claude, n8n, despliegue en tu propio servidor y anuncios que mandan clientes a WhatsApp.</p>
+          <a class="card-link" href="https://www.youtube.com/@KevinBelier" target="_blank" rel="noopener">Ir al canal →</a>
         </article>
 
-        <article class="quote reveal" data-delay="1">
-          <p class="quote-text">El agente de IA que crearon para generar propuestas automáticas transformó nuestra velocidad de respuesta. Pasamos de 3 días a 15 minutos por cotización.</p>
-          <div class="quote-author">
-            <span class="quote-name">Andrea S.</span>
-            <span class="quote-role">Fundadora · Consultora B2B</span>
-          </div>
+        <article class="card reveal">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17.5" cy="9" r="2.5"/><path d="M16 14.2c2.9.3 5 2.6 5 5.8"/></svg></div>
+          <h3>Vibe Community VIP</h3>
+          <p>La comunidad donde te acompaño de Tech Provider a tu primer cliente cobrado: clases en vivo, hot seats y grabaciones reales de ventas.</p>
+          <a class="card-link" href="__LANDING_URL__">Regístrate al live de reapertura →</a>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v10H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg></div>
+          <h3>Vocero</h3>
+          <p>El CRM open source con agente de IA que construí e instalo a clientes: WhatsApp, Instagram y Messenger en una sola bandeja, en tu servidor.</p>
+          <a class="card-link" href="https://github.com/kevinrivm/vocero-crm" target="_blank" rel="noopener">Ver en GitHub →</a>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- CONTACTO -->
-  <section class="section" id="contacto">
+  <!-- COMUNIDAD / RUTA -->
+  <section class="section section-alt" id="comunidad">
     <div class="shell">
-      <div class="section-head">
-        <div class="section-meta">
-          <span class="section-index">— 04</span>
-          <span class="section-kicker">Contacto</span>
+      <div class="section-head reveal">
+        <span class="mono gold">Vibe Community VIP</span>
+        <h2>La ruta, en tres pasos.</h2>
+        <p>Primero un cliente a la medida. Después, si quieres, tu propio SaaS.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step reveal">
+          <span class="mono step-num">01 · La puerta</span>
+          <h3>Tu app de Tech Provider</h3>
+          <p>Aprobada por Meta, para conectar el WhatsApp de tus clientes por la vía oficial, sin bloqueos de número.</p>
         </div>
-        <div>
-          <h2 class="section-title">
-            ¿Listo para <span class="gold-accent">automatizar</span> tu negocio?
-          </h2>
-          <p class="section-lede">
-            Agenda una llamada gratuita de 30 minutos. Identificamos qué procesos puedes automatizar y cuál es el ROI estimado.
-          </p>
+        <div class="step reveal">
+          <span class="mono step-num">02 · El producto</span>
+          <h3>Vocero en tu servidor</h3>
+          <p>El CRM con agente de IA, adaptado al nicho que elijas con Claude Code. No necesitas ser programador.</p>
+        </div>
+        <div class="step reveal">
+          <span class="mono step-num">03 · El cliente</span>
+          <h3>Tu primer cobro</h3>
+          <p>Qué dolor vender, cuánto cobrar, cómo hacer la llamada y un piloto pagado que un negocio acepta sin miedo.</p>
         </div>
       </div>
 
-      <div class="contact-layout">
-        <!-- FORM -->
-        <form class="contact-form reveal" id="contactForm" novalidate>
-          <div class="form-row">
-            <div class="form-field">
-              <label class="form-label" for="cf-name">Nombre</label>
-              <input class="form-input" id="cf-name" name="name" type="text" placeholder="Tu nombre completo" required />
-            </div>
-            <div class="form-field">
-              <label class="form-label" for="cf-email">Email</label>
-              <input class="form-input" id="cf-email" name="email" type="email" placeholder="tu@empresa.com" required />
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-field">
-              <label class="form-label" for="cf-phone">Teléfono</label>
-              <input class="form-input" id="cf-phone" name="phone" type="tel" placeholder="+52 000 000 0000" required />
-            </div>
-            <div class="form-field">
-              <label class="form-label" for="cf-type">Tipo de negocio</label>
-              <select class="form-input form-select" id="cf-type" name="businessType" required>
-                <option value="" disabled selected>Selecciona una opción</option>
-                <option value="agencia">Agencia</option>
-                <option value="consultor">Consultor</option>
-                <option value="integrador">Integrador</option>
-                <option value="freelancer">Freelancer</option>
-                <option value="otro">Otro</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-field">
-            <label class="form-label" for="cf-message">¿En qué podemos ayudarte? <span class="form-optional">(opcional)</span></label>
-            <textarea class="form-input form-textarea" id="cf-message" name="message" placeholder="Cuéntanos brevemente qué procesos quieres automatizar..." rows="4"></textarea>
-          </div>
-          <div class="form-footer">
-            <button type="submit" class="btn btn-primary btn-arrow" id="cfSubmit">Agendar demo gratuita</button>
-            <p class="form-status" id="cfStatus" aria-live="polite"></p>
-            <p class="form-optional" style="margin:0">Al enviar aceptas nuestro <a href="/aviso-de-privacidad/">Aviso de privacidad</a>.</p>
-          </div>
-        </form>
+      <div class="steps-cta reveal">
+        <a href="__LANDING_URL__" class="btn btn-primary">Regístrate al live del 30 de septiembre <span class="arrow">→</span></a>
+        <p>Gratis. Ahí muestro los casos de los miembros.</p>
+      </div>
+    </div>
+  </section>
 
-        <!-- SIDE INFO -->
-        <div class="contact-side reveal" data-delay="1">
-          <div class="contact-side-block">
-            <span class="form-label">Teléfono / WhatsApp</span>
-            <a href="tel:+524621349768" class="contact-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.95.68l1.5 4.49a1 1 0 01-.5 1.21l-2.26 1.13a11.04 11.04 0 005.52 5.52l1.13-2.26a1 1 0 011.21-.5l4.49 1.5a1 1 0 01.68.95V19a2 2 0 01-2 2h-1C9.72 21 3 14.28 3 6V5z"/></svg>
-              +52 462 134 9768
-            </a>
-          </div>
-          <div class="contact-side-block">
-            <span class="form-label">Email directo</span>
-            <a href="mailto:hola@aishiagency.tech" class="contact-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-              hola@aishiagency.tech
-            </a>
-          </div>
-          <div class="contact-side-block">
-            <span class="form-label">Redes</span>
-            <a href="https://linkedin.com/in/kevinrivm" target="_blank" rel="noopener" class="contact-item">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-              LinkedIn
-            </a>
-            <a href="https://instagram.com/aishiagency" target="_blank" rel="noopener" class="contact-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-              Instagram
-            </a>
-          </div>
-          <div class="contact-side-block">
-            <span class="form-label">Domicilio</span>
-            <p class="contact-meta">Colombia 279, Col. La Hacienda<br />C.P. 36650, Irapuato, Guanajuato, México<br />Lun – Vie · 9:00 – 18:00</p>
-          </div>
+  <!-- TESTIMONIO -->
+  <section class="section" id="casos">
+    <div class="shell">
+      <div class="section-head reveal">
+        <span class="mono gold">Miembros que ya cobraron</span>
+        <h2>De no grabar ni un video a dos clientes cerrados.</h2>
+      </div>
+
+      <div class="testimonial reveal">
+        <div>
+          <blockquote>Si no hubiera ingresado a la comunidad no estaría en esto. Lo único que uno tiene que hacer es dejar la pereza y arrancar.</blockquote>
+          <p class="testimonial-author"><strong>Fernando Vega</strong> · Betson, Colombia · miembro de Vibe Community VIP</p>
         </div>
+        <ul class="testimonial-facts">
+          <li><strong>~$36 USD</strong><span>de pauta en Meta Ads, solo con anuncios estáticos</span></li>
+          <li><strong>4 llamadas → 2 clientes</strong><span>con su propia versión de Vocero, en su servidor</span></li>
+          <li><strong>$450 + $250 USD</strong><span>de instalación, más mensualidad de mantenimiento</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE MÍ -->
+  <section class="section section-alt" id="sobre-mi">
+    <div class="shell about">
+      <div class="about-photo reveal">
+        <img src="/assets/kevin.png" alt="Kevin Belier" loading="lazy" width="640" height="640" />
+      </div>
+      <div class="about-text reveal">
+        <span class="mono gold">Sobre mí</span>
+        <h2 style="font-size:clamp(28px,3.6vw,40px);letter-spacing:-.03em;line-height:1.12;margin:14px 0 20px;font-weight:600">Hola, soy Kevin.</h2>
+        <p>Soy de Irapuato, Guanajuato. Me dedico a <strong>la IA aplicada a la atención y las ventas por WhatsApp</strong>: soy Tech Provider verificado de Meta, construí <strong>Vocero</strong> y lo implemento en negocios reales.</p>
+        <p>En YouTube comparto lo que funciona, y en <strong>Vibe Community VIP</strong> acompaño a quienes quieren convertir esa tecnología en un negocio: desde aprobar su app en Meta hasta cobrarle a su primer cliente.</p>
+        <div class="about-links">
+          <a class="btn btn-ghost btn-sm" href="https://www.youtube.com/@KevinBelier" target="_blank" rel="noopener">YouTube</a>
+          <a class="btn btn-ghost btn-sm" href="https://linkedin.com/in/kevinrivm" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn btn-ghost btn-sm" href="https://github.com/kevinrivm" target="_blank" rel="noopener">GitHub</a>
+        </div>
+        <p class="agency-note">¿Prefieres que lo implementemos por ti? Mi agencia lo hace: <a href="https://aishiagency.tech" target="_blank" rel="noopener">aishiagency.tech</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL / CONTACTO -->
+  <section class="section final-cta" id="contacto">
+    <div class="shell reveal">
+      <span class="mono gold">Contacto</span>
+      <h2>Nos vemos en el live del 30 de septiembre.</h2>
+      <p>Regístrate gratis. Si tienes una duda puntual, escríbeme o llámame al <a href="tel:+524621349768">+52 462 134 9768</a>.</p>
+      <div class="hero-actions">
+        <a href="__LANDING_URL__" class="btn btn-primary">Regístrate al live <span class="arrow">→</span></a>
+        <a href="tel:+524621349768" class="btn btn-ghost">+52 462 134 9768</a>
       </div>
     </div>
   </section>
@@ -341,42 +205,16 @@
   <footer class="footer">
     <div class="shell">
       <div class="footer-top">
-        <div class="footer-brand">
-          <a href="#inicio" class="nav-logo">
-            <img src="assets/logo.png" alt="Aishia" class="logo-img logo-sm" />
-            <span class="logo-word">Aishia</span>
-          </a>
-          <p>Automatización con IA para negocios que quieren escalar sin perder calidad.</p>
-        </div>
-        <div class="footer-col">
-          <h5>Navegación</h5>
-          <ul>
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#servicios">Servicios</a></li>
-            <li><a href="#nosotros">Nosotros</a></li>
-            <li><a href="#testimonios">Testimonios</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h5>Contacto</h5>
-          <ul>
-            <li><a href="tel:+524621349768">+52 462 134 9768</a></li>
-            <li><a href="mailto:hola@aishiagency.tech">hola@aishiagency.tech</a></li>
-            <li><a href="https://linkedin.com/in/kevinrivm" target="_blank" rel="noopener">LinkedIn</a></li>
-            <li><a href="https://instagram.com/aishiagency" target="_blank" rel="noopener">Instagram</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h5>Domicilio</h5>
-          <ul>
-            <li>Colombia 279, Col. La Hacienda</li>
-            <li>C.P. 36650, Irapuato, Gto., México</li>
-            <li>Lun – Vie · 9:00 – 18:00</li>
-          </ul>
-        </div>
+        <a href="/" class="brand"><span class="brand-mark">KB</span><span>Kevin Belier</span></a>
+        <ul>
+          <li><a href="https://www.youtube.com/@KevinBelier" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.skool.com/vibe-community-vip" target="_blank" rel="noopener">Vibe Community VIP</a></li>
+          <li><a href="https://github.com/kevinrivm/vocero-crm" target="_blank" rel="noopener">Vocero</a></li>
+          <li><a href="tel:+524621349768">+52 462 134 9768</a></li>
+        </ul>
       </div>
       <div class="footer-legal">
-        <p><strong>Kevin Belier IA</strong> (Aishia) es operado por <strong>Kevin Miguel Rivas Moreno</strong>, persona física con actividad empresarial.</p>
+        <p><strong>Kevin Belier IA</strong> es operado por <strong>Kevin Miguel Rivas Moreno</strong>, persona física con actividad empresarial.</p>
         <p>RFC: RIMK960321LM8 · Régimen Simplificado de Confianza · Domicilio fiscal: Colombia 279, Col. La Hacienda, C.P. 36650, Irapuato, Guanajuato, México · Tel. <a href="tel:+524621349768">+52 462 134 9768</a></p>
         <p><a href="/aviso-de-privacidad/">Aviso de privacidad</a> · <a href="/terminos/">Términos y condiciones</a></p>
       </div>
@@ -387,17 +225,22 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
-
-  <!-- LINE BACKGROUND ANIMATION -->
   <script>
-  (()=>{const canvas=document.getElementById("aishia-line-canvas"),bg=document.querySelector(".aishia-line-bg");if(!canvas||!bg)return;const ctx=canvas.getContext("2d"),reduce=matchMedia("(prefers-reduced-motion: reduce)").matches,state={scroll:0,time:0};let width=0,height=0,dpr=1,raf=0;const clamp=(v,min,max)=>Math.max(min,Math.min(max,v)),lerp=(a,b,t)=>a+(b-a)*t,smooth=(a,b,x)=>{const t=clamp((x-a)/(b-a),0,1);return t*t*(3-2*t)},gauss=(x,c,w)=>Math.exp(-Math.pow((x-c)/w,2));
-  function resize(){dpr=Math.min(devicePixelRatio||1,2);width=innerWidth;height=innerHeight;canvas.width=Math.floor(width*dpr);canvas.height=Math.floor(height*dpr);canvas.style.width=width+"px";canvas.style.height=height+"px";ctx.setTransform(dpr,0,0,dpr,0,0)}
-  function anchor(p){const m=width<760,rx=m?width*1.02:width*.88,lx=m?width*-.08:width*-.02,mrx=m?width*1:width*.92,flx=m?width*.02:width*.08,a=smooth(.07,.24,p),b=smooth(.34,.56,p),c=smooth(.68,.9,p),x1=lerp(rx,lx,a),x2=lerp(x1,mrx,b);return{x:lerp(x2,flx,c),y:lerp(lerp(lerp(height*.78,height*.48,a),height*.56,b),height*.52,c)}}
-  function pointFor(mode,t,i,total,p){const layer=i-(total-1)/2,ln=layer/total,phase=state.time*.00045,amp=lerp(height*.09,height*.17,smooth(.1,.56,p)),signal=Math.sin(t*8.5+layer*.1+phase)*.34+Math.sin(t*17-phase*2+i*.16)*.13+gauss(t,-.38,.13)*1.2-gauss(t,.04,.1)*1.55+gauss(t,.34,.16)*.88;if(mode===0)return{x:t*width*.34,y:layer*6.5+signal*amp*(.32+Math.abs(ln)*1.8)};if(mode===1){const bend=Math.sin(t*3.1+i*.12)*34+signal*42;return{x:layer*7.4+bend+Math.sin(t*9+phase)*10,y:t*height*.64+Math.sin(t*4-layer*.08)*24}}const r=height*.24+layer*4.8,ang=t*Math.PI*1.46+Math.PI*.04,dent=signal*height*.028;return{x:Math.cos(ang)*(r*1.36+dent)+layer*2.4,y:Math.sin(ang)*(r*.7+dent*.62)}}
-  function blended(t,i,total,p){const a=pointFor(0,t,i,total,p),b=pointFor(1,t,i,total,p),c=pointFor(2,t,i,total,p),v=smooth(.08,.28,p),arc=smooth(.62,.94,p);return{x:lerp(lerp(a.x,b.x,v),c.x,arc),y:lerp(lerp(a.y,b.y,v),c.y,arc)}}
-  function draw(p){const lines=width<760?26:42,pts=width<760?92:150,o=anchor(p),rot=lerp(lerp(0,-.22,smooth(.18,.44,p)),.1,smooth(.66,.92,p)),scale=lerp(1,width<760?.74:.92,smooth(.64,.94,p)),mixBase=smooth(.18,.56,p),alpha=width<760?.34:.5;bg.style.setProperty("--glow-x",`${o.x/width*100}%`);bg.style.setProperty("--glow-y",`${o.y/height*100}%`);ctx.save();ctx.translate(o.x,o.y);ctx.rotate(rot);ctx.scale(scale,scale);ctx.lineCap="round";ctx.lineJoin="round";for(let i=0;i<lines;i++){const mix=clamp(mixBase+(i/lines-.5)*.28,0,1),r=Math.round(lerp(245,232,mix)),g=Math.round(lerp(245,197,mix)),b=Math.round(lerp(245,108,mix)),a=alpha*(.35+i/lines*.9);ctx.beginPath();for(let j=0;j<pts;j++){const t=lerp(-1,1,j/(pts-1)),pt=blended(t,i,lines,p);if(j===0)ctx.moveTo(pt.x,pt.y);else ctx.lineTo(pt.x,pt.y)}ctx.strokeStyle=`rgba(${r}, ${g}, ${b}, ${a})`;ctx.lineWidth=i%7===0?1.1:.72;ctx.stroke()}ctx.globalCompositeOperation="lighter";ctx.shadowBlur=width<760?18:32;ctx.shadowColor="rgba(232,197,108,.55)";ctx.strokeStyle=`rgba(232,197,108,${width<760?.22:.32})`;ctx.lineWidth=1.3;ctx.beginPath();for(let j=0;j<pts;j++){const t=lerp(-1,1,j/(pts-1)),pt=blended(t,Math.floor(lines*.55),lines,p);if(j===0)ctx.moveTo(pt.x,pt.y);else ctx.lineTo(pt.x,pt.y)}ctx.stroke();ctx.restore()}
-  function frame(time){state.time=reduce?0:time;ctx.clearRect(0,0,width,height);draw(reduce?.18:state.scroll);if(!reduce)raf=requestAnimationFrame(frame)}resize();addEventListener("resize",resize);if(window.gsap&&window.ScrollTrigger&&!reduce){gsap.registerPlugin(ScrollTrigger);gsap.to(state,{scroll:1,ease:"none",scrollTrigger:{trigger:document.body,start:"top top",end:"bottom bottom",scrub:.7}})}else{addEventListener("scroll",()=>{const max=Math.max(1,document.documentElement.scrollHeight-innerHeight);state.scroll=clamp(scrollY/max,0,1);if(reduce)frame(0)})}raf=requestAnimationFrame(frame);addEventListener("pagehide",()=>cancelAnimationFrame(raf))})();
+    (function () {
+      var t = document.getElementById('navToggle'), l = document.getElementById('navLinks');
+      t.addEventListener('click', function () {
+        var open = l.classList.toggle('open');
+        t.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      l.addEventListener('click', function (e) { if (e.target.tagName === 'A') l.classList.remove('open'); });
+      var els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('in'); }); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+      }, { rootMargin: '0px 0px -8% 0px' });
+      els.forEach(function (el) { io.observe(el); });
+      setTimeout(function () { els.forEach(function (el) { el.classList.add('in'); }); }, 2500);
+    })();
   </script>
 </body>
 </html>
