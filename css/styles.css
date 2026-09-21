@@ -998,3 +998,19 @@ button { font: inherit; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ============ LEGAL PAGES (aviso de privacidad / términos) ============ */
+.legal { padding: 140px 0 96px; }
+.legal-inner { max-width: 760px; }
+.legal-kicker { font-family: var(--font-mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
+.legal h1 { font-size: clamp(32px, 5vw, 48px); font-weight: 500; letter-spacing: -.02em; line-height: 1.1; margin: 16px 0 12px; color: var(--text); }
+.legal-updated { color: var(--text-muted); font-size: 14px; margin: 0 0 48px; }
+.legal h2 { font-size: 20px; font-weight: 500; color: var(--text); margin: 44px 0 14px; }
+.legal p, .legal li { color: var(--text-muted); font-size: 16px; line-height: 1.7; }
+.legal ul { padding-left: 20px; margin: 0 0 16px; }
+.legal li { margin-bottom: 6px; }
+.legal strong { color: var(--text); font-weight: 500; }
+.legal a { color: var(--gold-bright); }
+.legal-card { border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 24px; background: var(--surface); margin: 0 0 16px; }
+.legal-card p { margin: 0 0 4px; }
+@media (max-width: 760px) { .legal { padding: 110px 0 64px; } }
