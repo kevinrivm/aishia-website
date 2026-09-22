@@ -212,7 +212,7 @@
     };
 
     btn.disabled = true; btn.textContent = 'Registrando…';
-    fetch(C.formEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+    fetch(C.formEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json; charset=utf-8' }, body: JSON.stringify(payload) })
       .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); })
       .then(function () {
         if (window.fbq) {
