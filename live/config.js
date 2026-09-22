@@ -10,11 +10,15 @@ window.LIVE_CONFIG = {
   timeLabel: '4:00 p. m. (CDMX)',
 
   // Video de YouTube del VSL: solo el ID (lo que va después de watch?v=). Vacío = se oculta el bloque.
-  vslYoutubeId: '',
+  vslYoutubeId: 'TkMTIwYDtk0',
 
   // Videos testimoniales (YouTube, idealmente "No listado"). Vacío = la sección no se muestra.
   // Ej.: { youtubeId: 'AbC123xyz', name: 'Fernando Vega', role: 'Betson · Colombia', quote: '$36 de pauta → 2 clientes' }
-  testimonialVideos: [],
+  testimonialVideos: [
+    { youtubeId: 'O18OguSXc_s', name: 'Eduardo Lagos', role: 'CRM con IA para una inmobiliaria de Madrid', quote: 'Le cobré 950 euros a una inmobiliaria por montarle un CRM con inteligencia artificial.' },
+    { youtubeId: '1mrwvQ2cCug', name: 'David Jirasek', role: 'Dueño de agencia', quote: 'Estamos desarrollando nuestro propio CRM personalizado, con las APIs oficiales de WhatsApp.' },
+    { youtubeId: 'gBCs_py69DI', name: 'Leopoldo Garrido', role: 'No venía de sistemas · hoy es Tech Provider de Meta', quote: 'Si estás viendo esto, es un claro testimonio de que sí se puede.' }
+  ],
 
   // ID del pixel de Meta (dataset). Vacío = no se carga el pixel.
   metaPixelId: '1043848984720523', // "Web kevinbelier.cloud" · portafolio Kevin Belier IA
