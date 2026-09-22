@@ -59,6 +59,7 @@
   if (!form) return;
   var status = document.getElementById('form-status');
   var btn = form.querySelector('button[type="submit"]');
+  var loadedAt = Date.now();
 
   function getCookie(name) {
     var m = document.cookie.match('(?:^|; )' + name + '=([^;]*)');
@@ -106,7 +107,9 @@
       utm_source: params.get('utm_source') || '', utm_medium: params.get('utm_medium') || '',
       utm_campaign: params.get('utm_campaign') || '', utm_content: params.get('utm_content') || '',
       utm_term: params.get('utm_term') || '', fbclid: params.get('fbclid') || '',
-      fbp: getCookie('_fbp'), fbc: getCookie('_fbc'), submitted_at: new Date().toISOString()
+      fbp: getCookie('_fbp'), fbc: getCookie('_fbc'), submitted_at: new Date().toISOString(),
+      // Antispam: hp debe llegar vacío; fill_seconds < 3 suele ser un bot.
+      hp: form.website.value, fill_seconds: Math.round((Date.now() - loadedAt) / 1000)
     };
 
     btn.disabled = true; btn.textContent = 'Registrando…';
