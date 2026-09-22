@@ -25,5 +25,5 @@ window.LIVE_CONFIG = {
   tag: 'live-30sep',
 
   // Dónde se ve el live (se muestra en la página de gracias y en el evento de calendario).
-  watchUrl: 'https://www.youtube.com/@KevinBelier/streams'
+  watchUrl: 'https://youtube.com/live/CmQXXt292rM'
 };
