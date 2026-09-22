@@ -116,7 +116,11 @@
     fetch(C.formEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
       .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); })
       .then(function () {
-        if (window.fbq) fbq('track', 'Lead', { content_name: C.tag || 'live-30sep' }, { eventID: eventId });
+        if (window.fbq) {
+          // Coincidencia avanzada manual: el pixel hashea estos datos (SHA-256) antes de enviarlos.
+          fbq('init', C.metaPixelId, { em: email.toLowerCase(), ph: wa.replace(/\D/g, ''), fn: name.split(' ')[0].toLowerCase() });
+          fbq('track', 'Lead', { content_name: C.tag || 'live-30sep' }, { eventID: eventId });
+        }
         try { sessionStorage.setItem('live_name', name.split(' ')[0]); } catch (e) {}
         setTimeout(function () { location.href = '/live/gracias/'; }, 350);
       })

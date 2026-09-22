@@ -13,7 +13,7 @@ window.LIVE_CONFIG = {
   vslYoutubeId: '',
 
   // ID del pixel de Meta (dataset). Vacío = no se carga el pixel.
-  metaPixelId: '',
+  metaPixelId: '1043848984720523', // "Web kevinbelier.cloud" · portafolio Kevin Belier IA
 
   // Webhook que recibe el registro (POST JSON). Debe responder 2xx.
   // Payload: { name, whatsapp, email, optin, tag, event_id, page_url, utm_*, fbp, fbc, submitted_at, hp, fill_seconds }
