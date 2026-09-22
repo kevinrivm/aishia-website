@@ -12,6 +12,10 @@ window.LIVE_CONFIG = {
   // Video de YouTube del VSL: solo el ID (lo que va después de watch?v=). Vacío = se oculta el bloque.
   vslYoutubeId: '',
 
+  // Videos testimoniales (YouTube, idealmente "No listado"). Vacío = la sección no se muestra.
+  // Ej.: { youtubeId: 'AbC123xyz', name: 'Fernando Vega', role: 'Betson · Colombia', quote: '$36 de pauta → 2 clientes' }
+  testimonialVideos: [],
+
   // ID del pixel de Meta (dataset). Vacío = no se carga el pixel.
   metaPixelId: '1043848984720523', // "Web kevinbelier.cloud" · portafolio Kevin Belier IA
 

@@ -16,13 +16,44 @@
   var timeText = C.timeLabel || 'hora por confirmar';
   document.querySelectorAll('[data-live-time]').forEach(function (el) { el.textContent = timeText; });
 
+  // Video "fachada": muestra la miniatura y carga el reproductor de YouTube solo al dar clic.
+  // Así la página carga rápido aunque tenga varios videos.
+  function ytFacade(el, id, title) {
+    el.classList.add('yt');
+    el.innerHTML = '<button type="button" class="yt-play" aria-label="Reproducir: ' + title.replace(/"/g, '') + '">' +
+      '<img src="https://i.ytimg.com/vi/' + encodeURIComponent(id) + '/hqdefault.jpg" alt="" loading="lazy" />' +
+      '<span class="yt-btn" aria-hidden="true"></span></button>';
+    el.querySelector('button').addEventListener('click', function () {
+      el.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) +
+        '?autoplay=1&rel=0&modestbranding=1&playsinline=1" title="' + title.replace(/"/g, '') +
+        '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+      if (window.fbq) fbq('trackCustom', 'VideoPlay', { video: title });
+    });
+  }
+
   var vsl = document.getElementById('vsl');
   if (vsl) {
-    if (C.vslYoutubeId) {
-      vsl.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(C.vslYoutubeId) +
-        '?rel=0&modestbranding=1" title="Video: live de reapertura" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>';
+    if (C.vslYoutubeId) ytFacade(vsl, C.vslYoutubeId, 'Video: live de reapertura');
+    else vsl.hidden = true;
+  }
+
+  var tv = document.getElementById('video-testimonials');
+  if (tv) {
+    var vids = (C.testimonialVideos || []).filter(function (v) { return v && v.youtubeId; });
+    if (!vids.length) {
+      var sec = document.getElementById('testimonios-video'); if (sec) sec.hidden = true;
     } else {
-      vsl.hidden = true;
+      vids.forEach(function (v) {
+        var card = document.createElement('article'); card.className = 'vt-card';
+        var frame = document.createElement('div'); frame.className = 'vt-frame';
+        var meta = document.createElement('div'); meta.className = 'vt-meta';
+        var n = document.createElement('strong'); n.textContent = v.name || '';
+        var r = document.createElement('span'); r.textContent = v.role || '';
+        meta.appendChild(n); meta.appendChild(r);
+        if (v.quote) { var q = document.createElement('p'); q.textContent = v.quote; meta.appendChild(q); }
+        card.appendChild(frame); card.appendChild(meta); tv.appendChild(card);
+        ytFacade(frame, v.youtubeId, 'Testimonio de ' + (v.name || 'miembro'));
+      });
     }
   }
 
