@@ -16,11 +16,10 @@ window.LIVE_CONFIG = {
   metaPixelId: '',
 
   // Webhook que recibe el registro (POST JSON). Debe responder 2xx.
-  // Payload: { name, whatsapp, email, optin, tag, event_id, page_url, utm_*, fbp, fbc, submitted_at }
+  // Payload: { name, whatsapp, email, optin, tag, event_id, page_url, utm_*, fbp, fbc, submitted_at, hp, fill_seconds }
+  // Sin autenticación a propósito: un formulario público no puede guardar secretos; n8n filtra el spam.
   formEndpoint: 'https://n8n2.kevinbelier.cloud/webhook/619c0f34-b390-462b-8360-4bf0027cca3a',
 
-  // JWT (HS256) que exige el webhook de n8n. Va en el navegador: es público, no es un secreto.
-  formJwt: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrZXZpbmJlbGllci1saXZlIiwiaXNzIjoia2V2aW5iZWxpZXIuY2xvdWQiLCJpYXQiOjE3OTAwMzYwMzh9.7yIcPeEG7b4nwkFdWw4VftlKZilqZWTbQUgIMWXBnPw',
 
   // Etiqueta con la que entra al CRM.
   tag: 'live-30sep',
