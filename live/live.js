@@ -110,7 +110,9 @@
     };
 
     btn.disabled = true; btn.textContent = 'Registrando…';
-    fetch(C.formEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+    var headers = { 'Content-Type': 'application/json' };
+    if (C.formJwt) headers.Authorization = 'Bearer ' + C.formJwt;
+    fetch(C.formEndpoint, { method: 'POST', headers: headers, body: JSON.stringify(payload) })
       .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); })
       .then(function () {
         if (window.fbq) fbq('track', 'Lead', { content_name: C.tag || 'live-30sep' }, { eventID: eventId });
