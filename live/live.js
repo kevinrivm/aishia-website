@@ -37,24 +37,88 @@
     else vsl.hidden = true;
   }
 
-  var tv = document.getElementById('video-testimonials');
-  if (tv) {
-    var vids = (C.testimonialVideos || []).filter(function (v) { return v && v.youtubeId; });
-    if (!vids.length) {
-      var sec = document.getElementById('testimonios-video'); if (sec) sec.hidden = true;
-    } else {
-      vids.forEach(function (v) {
-        var card = document.createElement('article'); card.className = 'vt-card';
-        var frame = document.createElement('div'); frame.className = 'vt-frame';
-        var meta = document.createElement('div'); meta.className = 'vt-meta';
-        var n = document.createElement('strong'); n.textContent = v.name || '';
-        var r = document.createElement('span'); r.textContent = v.role || '';
-        meta.appendChild(n); meta.appendChild(r);
-        if (v.quote) { var q = document.createElement('p'); q.textContent = v.quote; meta.appendChild(q); }
-        card.appendChild(frame); card.appendChild(meta); tv.appendChild(card);
-        ytFacade(frame, v.youtubeId, 'Testimonio de ' + (v.name || 'miembro'));
+  // ---------- Testimonios: carrusel horizontal con clips en silencio ----------
+  var track = document.getElementById('clips');
+  if (track) {
+    var list = (C.testimonialClips || []).filter(function (c) { return c && c.src; });
+    if (!list.length) { var sc = document.getElementById('casos'); if (sc) sc.hidden = true; }
+    list.forEach(function (c) {
+      var card = document.createElement('article'); card.className = 'lp-clip';
+      var media = document.createElement('div'); media.className = 'lp-clip-media';
+      var v = document.createElement('video');
+      v.muted = true; v.loop = true; v.playsInline = true; v.preload = 'none';
+      v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.poster = c.poster || '';
+      v.dataset.src = c.src; v.setAttribute('aria-label', 'Testimonio de ' + (c.name || 'miembro'));
+      var badge = document.createElement('span'); badge.className = 'lp-result'; badge.textContent = c.result || '';
+      var sound = document.createElement('span'); sound.className = 'lp-sound'; sound.textContent = '🔊 Toca para escuchar';
+      media.appendChild(v); if (c.result) media.appendChild(badge); media.appendChild(sound);
+      var meta = document.createElement('div'); meta.className = 'lp-clip-meta';
+      var n = document.createElement('strong'); n.textContent = c.name || '';
+      var r = document.createElement('span'); r.textContent = c.role || '';
+      meta.appendChild(n); meta.appendChild(r);
+      if (c.quote) { var q = document.createElement('p'); q.textContent = '“' + c.quote + '”'; meta.appendChild(q); }
+      card.appendChild(media); card.appendChild(meta); track.appendChild(card);
+
+      media.addEventListener('click', function () {
+        var playing = card.classList.contains('is-playing');
+        track.querySelectorAll('.lp-clip.is-playing').forEach(function (o) {
+          if (o === card) return; o.classList.remove('is-playing');
+          var ov = o.querySelector('video'); ov.muted = true; ov.controls = false;
+        });
+        if (!playing) {
+          if (!v.src) v.src = v.dataset.src;
+          card.classList.add('is-playing'); v.muted = false; v.controls = true; v.currentTime = 0; v.play();
+          if (window.fbq) fbq('trackCustom', 'VideoPlay', { video: 'Testimonio ' + (c.name || '') });
+        }
       });
+    });
+
+    // Reproduce en silencio solo el video visible; pausa los que salen de pantalla.
+    var clipVideos = track.querySelectorAll('video');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          var vid = en.target;
+          if (en.isIntersecting && en.intersectionRatio >= 0.6) {
+            if (!vid.src) vid.src = vid.dataset.src;
+            var p = vid.play(); if (p && p.catch) p.catch(function () {});
+          } else if (!vid.closest('.lp-clip').classList.contains('is-playing') || !en.isIntersecting) {
+            vid.pause();
+          }
+        });
+      }, { threshold: [0, 0.6] });
+      clipVideos.forEach(function (vid) { io.observe(vid); });
     }
+
+    document.querySelectorAll('.lp-arrow').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var first = track.querySelector('.lp-clip');
+        var step = first ? first.getBoundingClientRect().width + 20 : 400;
+        track.scrollBy({ left: step * Number(b.dataset.dir), behavior: 'smooth' });
+      });
+    });
+  }
+
+  // ---------- Cuenta regresiva ----------
+  var cds = document.querySelectorAll('[data-countdown]');
+  if (cds.length && C.startsAt) {
+    var target = new Date(C.startsAt).getTime();
+    var tick = function () {
+      var diff = Math.max(0, target - Date.now());
+      var parts = { d: Math.floor(diff / 864e5), h: Math.floor(diff / 36e5) % 24, m: Math.floor(diff / 6e4) % 60, s: Math.floor(diff / 1e3) % 60 };
+      cds.forEach(function (cd) {
+        Object.keys(parts).forEach(function (k) { var el = cd.querySelector('[data-cd="' + k + '"]'); if (el) el.textContent = (parts[k] < 10 ? '0' : '') + parts[k]; });
+      });
+    };
+    tick(); setInterval(tick, 1000);
+  }
+
+  // ---------- Barra fija en celular (aparece cuando el formulario ya no se ve) ----------
+  var sticky = document.getElementById('lp-sticky'), reg = document.getElementById('registro');
+  if (sticky && reg && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      sticky.hidden = entries[0].isIntersecting;
+    }).observe(reg);
   }
 
   // ---------- Calendario (página de gracias) ----------

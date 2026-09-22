@@ -12,12 +12,13 @@ window.LIVE_CONFIG = {
   // Video de YouTube del VSL: solo el ID (lo que va después de watch?v=). Vacío = se oculta el bloque.
   vslYoutubeId: 'TkMTIwYDtk0',
 
-  // Videos testimoniales (YouTube, idealmente "No listado"). Vacío = la sección no se muestra.
-  // Ej.: { youtubeId: 'AbC123xyz', name: 'Fernando Vega', role: 'Betson · Colombia', quote: '$36 de pauta → 2 clientes' }
-  testimonialVideos: [
-    { youtubeId: 'O18OguSXc_s', name: 'Eduardo Lagos', role: 'CRM con IA para una inmobiliaria de Madrid', quote: 'Le cobré 950 euros a una inmobiliaria por montarle un CRM con inteligencia artificial.' },
-    { youtubeId: '1mrwvQ2cCug', name: 'David Jirasek', role: 'Dueño de agencia', quote: 'Estamos desarrollando nuestro propio CRM personalizado, con las APIs oficiales de WhatsApp.' },
-    { youtubeId: 'gBCs_py69DI', name: 'Leopoldo Garrido', role: 'No venía de sistemas · hoy es Tech Provider de Meta', quote: 'Si estás viendo esto, es un claro testimonio de que sí se puede.' }
+  // Testimonios en video alojados en el sitio (clips cortos 720p, ~1 MB): se reproducen en silencio
+  // en el carrusel y con sonido al tocarlos. "result" es la etiqueta dorada sobre el video.
+  testimonialClips: [
+    { src: '/assets/testimonios/fernando-vega.mp4', poster: '/assets/testimonios/fernando-vega.jpg', name: 'Fernando Vega', role: 'Betson · Colombia', result: '$36 de pauta → 2 clientes', quote: 'De 4 llamadas cerró 2 clientes: $450 y $250 USD de instalación, más mensualidad.' },
+    { src: '/assets/testimonios/eduardo-lagos.mp4', poster: '/assets/testimonios/eduardo-lagos.jpg', name: 'Eduardo Lagos', role: 'CRM con IA para una inmobiliaria de Madrid', result: '€950 por un CRM con IA', quote: 'Le cobré 950 euros a una inmobiliaria por montarle un CRM con inteligencia artificial.' },
+    { src: '/assets/testimonios/david-jirasek.mp4', poster: '/assets/testimonios/david-jirasek.jpg', name: 'David Jirasek', role: 'Dueño de agencia', result: 'Su propio CRM con WhatsApp oficial', quote: 'Estamos desarrollando nuestro propio CRM personalizado, con las APIs oficiales de WhatsApp.' },
+    { src: '/assets/testimonios/leopoldo-garrido.mp4', poster: '/assets/testimonios/leopoldo-garrido.jpg', name: 'Leopoldo Garrido', role: 'No venía de sistemas', result: 'Tech Provider sin ser programador', quote: 'Si estás viendo esto, es un claro testimonio de que sí se puede.' }
   ],
 
   // ID del pixel de Meta (dataset). Vacío = no se carga el pixel.
