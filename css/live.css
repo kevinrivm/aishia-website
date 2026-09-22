@@ -65,6 +65,14 @@
   .lp-countdown { width: 100%; }
 }
 
+.lp-thumb {
+  display: block; margin: 16px 0 4px; max-width: 600px; border-radius: 16px; overflow: hidden;
+  box-shadow: 0 24px 50px -28px rgba(0,0,0,.55); transition: transform .2s var(--ease);
+}
+.lp-thumb:hover { transform: translateY(-2px); }
+.lp-thumb img { width: 100%; height: auto; display: block; aspect-ratio: 16 / 9; object-fit: cover; }
+.lp-thumb + h1 { font-size: clamp(32px, 3.9vw, 46px); margin-top: 22px; }
+
 /* ---------- Testimonios (banda oscura + carrusel) ---------- */
 .lp-dark { background: var(--dark); color: #F5F2EA; padding: 72px 0 56px; }
 .lp-dark h2 { color: #fff; }
@@ -174,4 +182,5 @@
   box-shadow: 0 -10px 30px -12px rgba(0,0,0,.4);
 }
 .lp-sticky b { color: #fff; }
+.lp-sticky[hidden], .live-page section[hidden], .vsl[hidden] { display: none !important; }
 @media (min-width: 901px) { .lp-sticky { display: none !important; } }

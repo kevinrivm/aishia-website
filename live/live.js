@@ -115,10 +115,14 @@
 
   // ---------- Barra fija en celular (aparece cuando el formulario ya no se ve) ----------
   var sticky = document.getElementById('lp-sticky'), reg = document.getElementById('registro');
-  if (sticky && reg && 'IntersectionObserver' in window) {
-    new IntersectionObserver(function (entries) {
-      sticky.hidden = entries[0].isIntersecting;
-    }).observe(reg);
+  if (sticky && reg) {
+    var updateSticky = function () {
+      var r = reg.getBoundingClientRect();
+      sticky.hidden = r.bottom > 0 && r.top < window.innerHeight; // oculto mientras el formulario se ve
+    };
+    window.addEventListener('scroll', updateSticky, { passive: true });
+    window.addEventListener('resize', updateSticky);
+    updateSticky();
   }
 
   // ---------- Calendario (página de gracias) ----------
