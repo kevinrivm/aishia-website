@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1043848984720523');
+  fbq('track', 'PageView');
+  </script>
+  <!-- End Meta Pixel Code -->
+  <title>Para agencias · Vibe Community VIP</title>
+  <meta name="description" content="Si ya le vendes servicios a negocios, aprende a venderles, adaptarles y entregarles sistemas con IA por WhatsApp, aunque no sepas programar." />
+  <link rel="canonical" href="https://kevinbelier.cloud/agencias" />
+  <meta property="og:title" content="Lo que pasa después del clic" />
+  <meta property="og:description" content="Aprende a vender, adaptar y entregar sistemas con IA por WhatsApp, aunque no sepas programar." />
+  <meta property="og:url" content="https://kevinbelier.cloud/agencias" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0d0c0a;
+      --panel: #171512;
+      --line: rgba(212, 168, 83, 0.22);
+      --text: #f4ede1;
+      --dim: #bcb09d;
+      --gold: #d4a853;
+      --gold-light: #efcf8a;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: Geist, system-ui, sans-serif; font-size: 18px; line-height: 1.55;
+    }
+    .shell { width: min(100% - 32px, 960px); margin-inline: auto; }
+    .eyebrow { font: 600 13px/1.4 "JetBrains Mono", monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--gold); }
+    .gold { color: var(--gold-light); }
+    header.hero { padding: 56px 0 28px; text-align: center; background: radial-gradient(70% 60% at 50% 0, rgba(212, 168, 83, .16), transparent); }
+    h1 { margin: 14px auto; max-width: 820px; font-size: clamp(32px, 6vw, 54px); line-height: 1.08; letter-spacing: -.02em; }
+    .lede { margin: 0 auto; max-width: 660px; color: var(--dim); font-size: clamp(18px, 2.4vw, 21px); }
+    .video {
+      position: relative; aspect-ratio: 16 / 9; margin: 32px auto 0; border: 1px solid var(--line);
+      border-radius: 14px; overflow: hidden; background: linear-gradient(145deg, #23201a, #0d0c0a);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, .55);
+    }
+    .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .play {
+      position: absolute; inset: 0; display: flex; flex-direction: column; gap: 14px; align-items: center; justify-content: center;
+      width: 100%; border: 0; background: none; color: var(--text); font: 600 18px Geist, sans-serif; cursor: pointer;
+    }
+    .play i {
+      display: grid; place-items: center; width: 84px; height: 84px; border-radius: 50%;
+      background: var(--gold); color: #17140e; font-style: normal; font-size: 30px; transition: transform .18s;
+    }
+    .play:hover i { transform: scale(1.07); }
+    .play:focus-visible, .btn:focus-visible { outline: 3px solid var(--gold-light); outline-offset: 3px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 26px 0 8px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; min-height: 54px; padding: 13px 24px;
+      border-radius: 10px; font-weight: 700; text-decoration: none; text-align: center;
+    }
+    .btn.primary { background: var(--gold); color: #17140e; }
+    .btn.primary:hover { background: var(--gold-light); }
+    .btn.ghost { border: 1px solid var(--line); color: var(--text); }
+    .btn.ghost:hover { border-color: var(--gold); }
+    .note { margin: 8px 0 0; color: var(--dim); font-size: 15px; text-align: center; }
+    section { padding: 52px 0 0; }
+    h2 { margin: 8px 0 22px; font-size: clamp(26px, 4vw, 36px); line-height: 1.15; letter-spacing: -.01em; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .card { padding: 22px; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); }
+    .card h3 { margin: 0 0 8px; font-size: 20px; color: var(--gold-light); }
+    .card p { margin: 0; color: var(--dim); font-size: 16px; }
+    .fit { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .fit ul { margin: 12px 0 0; padding: 0; list-style: none; color: var(--dim); font-size: 16px; }
+    .fit li { padding: 6px 0 6px 24px; position: relative; }
+    .fit li::before { position: absolute; left: 0; color: var(--gold); content: "✓"; }
+    .fit .no li::before { color: var(--dim); content: "—"; }
+    .cases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .case b { display: block; font-size: 28px; color: var(--gold-light); }
+    .case span { color: var(--dim); font-size: 16px; }
+    .legal { margin: 18px 0 0; color: var(--dim); font-size: 14px; }
+    .closing { margin-top: 56px; padding: 40px 0 44px; text-align: center; border-top: 1px solid var(--line); }
+    .closing h2 { margin-bottom: 10px; }
+    .closing p { margin: 0 auto; max-width: 620px; color: var(--dim); }
+    footer { padding: 22px 0 34px; color: var(--dim); font-size: 14px; text-align: center; }
+    footer a { color: var(--dim); }
+    @media (max-width: 760px) {
+      body { font-size: 17px; }
+      header.hero { padding-top: 40px; }
+      .grid, .fit, .cases { grid-template-columns: 1fr; }
+      .actions .btn { width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .play i { transition: none; } }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="shell">
+      <span class="eyebrow">Para agencias, consultores y freelancers</span>
+      <h1>Ya le vendes publicidad a tus clientes. Ahora véndeles <span class="gold">lo que pasa después del clic.</span></h1>
+      <p class="lede">Aprende a venderles, adaptarles y entregarles sistemas con IA por WhatsApp, aunque no sepas programar.</p>
+      <div class="video" id="video">
+        <button type="button" class="play" id="play" aria-label="Reproducir el video">
+          <i aria-hidden="true">▶</i>
+          <span>Mira lo que hay adentro · 13 min</span>
+        </button>
+      </div>
+      <div class="actions">
+        <a class="btn primary" data-clic="comunidad" href="/comunidad">Ver la comunidad</a>
+        <a class="btn ghost" data-clic="dudas" href="/dudas">Tengo una duda</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section>
+      <span class="eyebrow">Lo que se aprende</span>
+      <h2>No se trata de vender un bot</h2>
+      <div class="grid">
+        <article class="card"><h3>Venderlo</h3><p>A quién ofrecerlo, cómo hacer el diagnóstico y cuánto cobrar.</p></article>
+        <article class="card"><h3>Adaptarlo</h3><p>Cómo convertir un sistema base en algo útil para cada negocio.</p></article>
+        <article class="card"><h3>Entregarlo</h3><p>Producción, respaldos y seguridad para que no truene.</p></article>
+      </div>
+    </section>
+
+    <section>
+      <span class="eyebrow">Sin rodeos</span>
+      <h2>Esto no es para todos</h2>
+      <div class="fit">
+        <article class="card">
+          <h3>Es para ti si</h3>
+          <ul>
+            <li>Ya le vendes servicios a negocios</li>
+            <li>Sabes vender y te falta la parte técnica</li>
+            <li>Vas a trabajarlo con clientes reales</li>
+          </ul>
+        </article>
+        <article class="card no">
+          <h3>No es para ti si</h3>
+          <ul>
+            <li>Solo quieres aprender IA</li>
+            <li>Buscas dinero rápido</li>
+            <li>No quieres hablar con clientes</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <span class="eyebrow">Publicado por miembros</span>
+      <h2>Lo que han cobrado</h2>
+      <div class="cases">
+        <article class="card case"><b>$4,200</b><span>Joab · sistema de un hotel</span></article>
+        <article class="card case"><b>$2,000</b><span>David · comedores escolares</span></article>
+        <article class="card case"><b>950 €</b><span>Eduardo · inmobiliaria</span></article>
+      </div>
+      <p class="legal">Estos son casos individuales. Tus resultados dependen de tu oferta, tus clientes y tu trabajo.</p>
+    </section>
+
+    <section class="closing">
+      <h2>$49 USD al mes</h2>
+      <p>Cancelas cuando quieras. Ve el video completo y decide si es para ti.</p>
+      <div class="actions">
+        <a class="btn primary" data-clic="comunidad" href="/comunidad">Ver la comunidad</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">Kevin Belier · <a href="/aviso-de-privacidad">Aviso de privacidad</a> · <a href="/terminos">Términos</a></div>
+  </footer>
+
+  <script>
+    var VIDEO_ID = 'xCx-9Nztk4Y';
+    document.getElementById('play').addEventListener('click', function () {
+      var marco = document.createElement('iframe');
+      marco.src = 'https://www.youtube-nocookie.com/embed/' + VIDEO_ID + '?autoplay=1&rel=0';
+      marco.title = 'Lo que hay dentro de Vibe Community VIP';
+      marco.allow = 'autoplay; encrypted-media; picture-in-picture';
+      marco.allowFullscreen = true;
+      document.getElementById('video').replaceChildren(marco);
+      if (window.fbq) fbq('track', 'ViewContent', { content_name: 'vsl-agencias' });
+    });
+    document.querySelectorAll('[data-clic]').forEach(function (enlace) {
+      enlace.addEventListener('click', function () {
+        var evento = enlace.dataset.clic === 'comunidad' ? 'ClicComunidad' : 'ClicDudas';
+        if (window.fbq) fbq('trackCustom', evento);
+      });
+    });
+  </script>
+</body>
+</html>
