@@ -53,11 +53,13 @@
       border-radius: 14px; overflow: hidden; background: linear-gradient(145deg, #23201a, #0d0c0a);
       box-shadow: 0 24px 70px rgba(0, 0, 0, .55);
     }
-    .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .video iframe, #player { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
     .play {
-      position: absolute; inset: 0; display: flex; flex-direction: column; gap: 14px; align-items: center; justify-content: center;
-      width: 100%; border: 0; background: none; color: var(--text); font: 600 18px Geist, sans-serif; cursor: pointer;
+      position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; gap: 10px; align-items: center; justify-content: center;
+      width: 100%; border: 0; background: rgba(13, 12, 10, .45); color: var(--text); font: 700 20px Geist, sans-serif; cursor: pointer;
     }
+    .play small { color: var(--dim); font-size: 15px; font-weight: 500; }
+    .play[hidden] { display: none; }
     .play i {
       display: grid; place-items: center; width: 84px; height: 84px; border-radius: 50%;
       background: var(--gold); color: #17140e; font-style: normal; font-size: 30px; transition: transform .18s;
@@ -110,9 +112,11 @@
       <h1>Ya le vendes publicidad a tus clientes. Ahora véndeles <span class="gold">lo que pasa después del clic.</span></h1>
       <p class="lede">Aprende a venderles, adaptarles y entregarles sistemas con IA por WhatsApp, aunque no sepas programar.</p>
       <div class="video" id="video">
-        <button type="button" class="play" id="play" aria-label="Reproducir el video">
-          <i aria-hidden="true">▶</i>
-          <span>Mira el video · 4 min</span>
+        <div id="player"></div>
+        <button type="button" class="play" id="play" aria-label="Activar el sonido del video">
+          <i aria-hidden="true">🔊</i>
+          <span>Toca para activar el sonido</span>
+          <small>Mira el video · 4 min</small>
         </button>
       </div>
       <div class="actions">
@@ -187,15 +191,35 @@
     var marca = ((q.get('v') || '') + ' ' + (q.get('utm_content') || '')).toLowerCase().match(/(?:^|[\s-])([abc])(?:\s|$)/);
     var GANCHO = marca ? marca[1] : 'a';
     var VIDEO_ID = VIDEOS[GANCHO];
-    document.getElementById('play').addEventListener('click', function () {
-      var marco = document.createElement('iframe');
-      marco.src = 'https://www.youtube-nocookie.com/embed/' + VIDEO_ID + '?autoplay=1&rel=0&playsinline=1';
-      marco.title = 'Lo que hay dentro de Vibe Community VIP';
-      marco.allow = 'autoplay; encrypted-media; picture-in-picture';
-      marco.allowFullscreen = true;
-      document.getElementById('video').replaceChildren(marco);
+    // El navegador no deja arrancar con sonido: arranca en silencio y, al tocar, reinicia desde 0 con audio
+    var boton = document.getElementById('play');
+    var player = null, listo = false, pidio = false;
+    function conSonido() {
+      boton.hidden = true;
+      player.unMute(); player.setVolume(100); player.seekTo(0, true); player.playVideo();
       if (window.fbq) fbq('track', 'ViewContent', { content_name: 'vsl-' + GANCHO });
+    }
+    boton.addEventListener('click', function () {
+      if (listo) conSonido(); else pidio = true;
     });
+    window.onYouTubeIframeAPIReady = function () {
+      player = new YT.Player('player', {
+        host: 'https://www.youtube-nocookie.com',
+        videoId: VIDEO_ID,
+        playerVars: { autoplay: 1, mute: 1, playsinline: 1, rel: 0, modestbranding: 1, cc_load_policy: 0 },
+        events: {
+          onReady: function (e) {
+            e.target.mute(); e.target.playVideo();
+            listo = true; if (pidio) conSonido();
+          }
+        }
+      });
+      var f = document.querySelector('#video iframe');
+      if (f) f.title = 'Lo que hay dentro de Vibe Community VIP';
+    };
+    var api = document.createElement('script');
+    api.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(api);
     document.querySelectorAll('[data-clic]').forEach(function (enlace) {
       enlace.addEventListener('click', function () {
         var evento = enlace.dataset.clic === 'comunidad' ? 'ClicComunidad' : 'ClicDudas';
