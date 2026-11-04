@@ -112,7 +112,7 @@
       <div class="video" id="video">
         <button type="button" class="play" id="play" aria-label="Reproducir el video">
           <i aria-hidden="true">▶</i>
-          <span>Mira lo que hay adentro · 13 min</span>
+          <span>Mira el video · 4 min</span>
         </button>
       </div>
       <div class="actions">
@@ -181,15 +181,20 @@
   </footer>
 
   <script>
-    var VIDEO_ID = 'xCx-9Nztk4Y';
+    // Un VSL por gancho: el anuncio manda ?v=a|b|c (o utm_content=ad-a / vsl-a); sin dato, va el A
+    var VIDEOS = { a: 'NAMa7ePBEBk', b: '5MiDVm4-BDw', c: 'DaT-C9gu1lc' };
+    var q = new URLSearchParams(location.search);
+    var marca = ((q.get('v') || '') + ' ' + (q.get('utm_content') || '')).toLowerCase().match(/(?:^|[\s-])([abc])(?:\s|$)/);
+    var GANCHO = marca ? marca[1] : 'a';
+    var VIDEO_ID = VIDEOS[GANCHO];
     document.getElementById('play').addEventListener('click', function () {
       var marco = document.createElement('iframe');
-      marco.src = 'https://www.youtube-nocookie.com/embed/' + VIDEO_ID + '?autoplay=1&rel=0';
+      marco.src = 'https://www.youtube-nocookie.com/embed/' + VIDEO_ID + '?autoplay=1&rel=0&playsinline=1';
       marco.title = 'Lo que hay dentro de Vibe Community VIP';
       marco.allow = 'autoplay; encrypted-media; picture-in-picture';
       marco.allowFullscreen = true;
       document.getElementById('video').replaceChildren(marco);
-      if (window.fbq) fbq('track', 'ViewContent', { content_name: 'vsl-agencias' });
+      if (window.fbq) fbq('track', 'ViewContent', { content_name: 'vsl-' + GANCHO });
     });
     document.querySelectorAll('[data-clic]').forEach(function (enlace) {
       enlace.addEventListener('click', function () {
