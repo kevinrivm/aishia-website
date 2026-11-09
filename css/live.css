@@ -184,3 +184,16 @@
 .lp-sticky b { color: #fff; }
 .lp-sticky[hidden], .live-page section[hidden], .vsl[hidden] { display: none !important; }
 @media (min-width: 901px) { .lp-sticky { display: none !important; } }
+
+/* Live 19-nov: listas desplegables con el mismo look que los campos de texto */
+.field select {
+  width: 100%; font: inherit; font-size: 16px; padding: 13px 40px 13px 14px; border-radius: 10px;
+  border: 1px solid var(--line-strong); background-color: var(--bg); color: var(--ink);
+  appearance: none; -webkit-appearance: none; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23B49B50' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center;
+  transition: border-color .2s, box-shadow .2s;
+}
+.field select:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px var(--gold-soft); }
+.has-error select { border-color: #A1301F; }
+.field[hidden] { display: none; }

@@ -5,19 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>¡Listo! Ya tienes tu lugar — Kevin Belier</title>
   <meta name="robots" content="noindex" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23121212'/%3E%3Ctext x='32' y='41' font-family='Arial,sans-serif' font-size='26' font-weight='700' fill='%23B49B50' text-anchor='middle'%3EKB%3C/text%3E%3C/svg%3E" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="/assets/favicon-64.png" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/css/site.css?v=202609221118" />
-  <script src="/live/config.js?v=202609221118"></script>
+  <link rel="stylesheet" href="/css/site.css?v=202611091800" />
+  <script src="/live/config.js?v=202611091800"></script>
 </head>
 <body>
 
   <nav class="nav">
     <div class="shell nav-inner">
       <a href="/" class="brand" aria-label="Kevin Belier — inicio">
-        <span class="brand-mark">KB</span>
+        <img class="brand-mark brand-avatar" src="/assets/kevin-avatar-96.png" alt="" width="32" height="32" />
         <span>Kevin Belier</span>
       </a>
     </div>
@@ -25,14 +27,15 @@
 
   <main class="thanks">
     <div class="shell">
-      <span class="live-date"><b>● REGISTRO CONFIRMADO</b> Miércoles 30 de septiembre · <span data-live-time>hora por confirmar</span></span>
+      <span class="live-date"><b>● REGISTRO CONFIRMADO</b> <span data-live-longdate>Jueves 19 de noviembre</span></span>
       <h1><span id="thanks-name">¡Listo!</span> Ya tienes tu lugar en el live.</h1>
-      <p>Guárdalo en tu calendario para que no se te pase. Te mandaremos el enlace y un recordatorio por WhatsApp y correo.</p>
+      <p>Guárdalo en tu calendario para que no se te pase. El día del live te mandamos el enlace por WhatsApp, con la hora de tu país.</p>
       <div id="calendar-actions"></div>
 
       <div class="thanks-steps">
         <ul class="agenda">
           <li><span><strong>Agrega el evento a tu calendario</strong> con los botones de arriba.</span></li>
+          <li><span><strong>Guarda el número +52 56 5494 0354</strong> en tus contactos: desde ahí te llega el enlace.</span></li>
           <li><span><strong>Mientras tanto, mira el canal:</strong> <a class="gold" href="https://www.youtube.com/@KevinBelier" target="_blank" rel="noopener">youtube.com/@KevinBelier</a>.</span></li>
         </ul>
       </div>
@@ -51,6 +54,6 @@
   <script>
     try { var n = sessionStorage.getItem('live_name'); if (n) document.getElementById('thanks-name').textContent = '¡Listo, ' + n + '!'; } catch (e) {}
   </script>
-  <script src="/live/live.js?v=202609221118"></script>
+  <script src="/live/live.js?v=202611091800"></script>
 </body>
 </html>

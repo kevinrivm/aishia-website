@@ -12,8 +12,45 @@
     fbq('track', 'PageView');
   }
 
-  // ---------- Hora y VSL ----------
-  var timeText = C.timeLabel || 'hora por confirmar';
+  // ---------- Fecha y horarios por país (todo sale de C.startsAt) ----------
+  // Mismas zonas que usa n8n para los recordatorios: si cambia la hora en config.js,
+  // aquí se recalcula todo y no hay textos de hora escritos a mano.
+  var ZONAS = [
+    { label: 'México', tz: 'America/Mexico_City' },
+    { label: 'Colombia · Perú · Ecuador', tz: 'America/Bogota' },
+    { label: 'Venezuela · Bolivia · R. Dominicana', tz: 'America/Caracas' },
+    { label: 'Chile · Argentina · Uruguay', tz: 'America/Argentina/Buenos_Aires' },
+    { label: 'España', tz: 'Europe/Madrid' }
+  ];
+  function horaEn(d, tz) {
+    return d.toLocaleTimeString('es-MX', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: tz })
+      .replace(/\s?a\.?\s?m\.?/i, ' a. m.').replace(/\s?p\.?\s?m\.?/i, ' p. m.');
+  }
+  function fechaEn(d, tz, opts) { return d.toLocaleDateString('es-MX', Object.assign({ timeZone: tz }, opts)); }
+  var timeText = 'hora por confirmar';
+  if (C.startsAt) {
+    var inicio = new Date(C.startsAt), MX = 'America/Mexico_City';
+    var hMx = horaEn(inicio, MX);
+    timeText = hMx + ' (hora de México)';
+    var dia = fechaEn(inicio, MX, { weekday: 'short' }).replace('.', '').slice(0, 3).toUpperCase();
+    var num = fechaEn(inicio, MX, { day: 'numeric' });
+    var mes = fechaEn(inicio, MX, { month: 'short' }).replace('.', '').slice(0, 3).toUpperCase();
+    var largo = fechaEn(inicio, MX, { weekday: 'long', day: 'numeric', month: 'long' });
+    largo = largo.charAt(0).toUpperCase() + largo.slice(1);
+    var set = function (sel, fn) { document.querySelectorAll(sel).forEach(fn); };
+    set('[data-live-day]', function (el) { el.innerHTML = dia + '<b>' + num + '</b>' + mes; });
+    set('[data-live-hour]', function (el) { el.textContent = hMx; });
+    set('[data-live-zone]', function (el) { el.textContent = 'México'; });
+    set('[data-live-others]', function (el) {
+      el.textContent = ZONAS.slice(1).map(function (z) { return horaEn(inicio, z.tz) + ' ' + z.label.split(' · ')[0]; }).join(' · ');
+    });
+    set('[data-live-table]', function (el) {
+      el.innerHTML = largo + ':<br>' + ZONAS.map(function (z) { return '<b>' + horaEn(inicio, z.tz) + '</b> ' + z.label; }).join('<br>') +
+        '<br>Si vives en otro país, te mandamos tu hora por WhatsApp.';
+    });
+    set('[data-live-longdate]', function (el) { el.textContent = largo + ' · ' + hMx + ' (México)'; });
+    set('[data-live-short]', function (el) { el.textContent = dia.toLowerCase() + ' ' + num + ' ' + mes.toLowerCase() + ', ' + hMx.replace(':00', ''); });
+  }
   document.querySelectorAll('[data-live-time]').forEach(function (el) { el.textContent = timeText; });
 
   // Video "fachada": muestra la miniatura y carga el reproductor de YouTube solo al dar clic.
@@ -135,13 +172,13 @@
   if (cal) {
     if (C.startsAt) {
       var start = new Date(C.startsAt), end = new Date(start.getTime() + (C.durationMin || 90) * 60000);
-      var title = 'Live de reapertura · Vibe Community VIP';
-      var details = 'Live con Kevin Belier. Enlace: ' + (C.watchUrl || 'https://kevinbelier.cloud/live/');
+      var title = 'Live: ' + (C.title || 'Kevin Belier');
+      var details = 'Live gratis con Kevin Belier. Enlace: ' + (C.watchUrl || 'https://kevinbelier.cloud/live/');
       var g = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(title) +
         '&dates=' + utcStamp(start) + '/' + utcStamp(end) + '&details=' + encodeURIComponent(details) +
         '&location=' + encodeURIComponent(C.watchUrl || '');
       var ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Kevin Belier//Live//ES', 'BEGIN:VEVENT',
-        'UID:live-30sep@kevinbelier.cloud', 'DTSTAMP:' + utcStamp(new Date()), 'DTSTART:' + utcStamp(start),
+        'UID:' + (C.tag || 'live') + '@kevinbelier.cloud', 'DTSTAMP:' + utcStamp(new Date()), 'DTSTART:' + utcStamp(start),
         'DTEND:' + utcStamp(end), 'SUMMARY:' + title, 'DESCRIPTION:' + details, 'URL:' + (C.watchUrl || ''),
         'BEGIN:VALARM', 'TRIGGER:-PT30M', 'ACTION:DISPLAY', 'DESCRIPTION:' + title, 'END:VALARM',
         'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
@@ -173,6 +210,37 @@
     if (wrap) { wrap.classList.toggle('has-error', !!msg); var e = wrap.querySelector('.field-error'); if (e) e.textContent = msg || ''; }
   }
 
+  // «¿Cómo te enteraste?»: pide el detalle solo cuando sirve para atribuir.
+  var DETALLE = {
+    youtube: { label: '¿Cuál video? (el título o de qué trataba)', placeholder: 'Ej.: el del CRM con IA', req: false },
+    referido: { label: '¿Quién te lo recomendó?', placeholder: 'Su nombre', req: false },
+    anuncio: { label: '¿Dónde viste el anuncio?', placeholder: 'Facebook, Instagram, YouTube…', req: false },
+    otro: { label: '¿Dónde?', placeholder: 'Cuéntanos en pocas palabras', req: true }
+  };
+  var detWrap = form.querySelector('[data-field="como_detalle"]');
+  var detLabel = form.querySelector('[data-detalle-label]');
+  function syncDetalle() {
+    var d = DETALLE[form.como.value];
+    detWrap.hidden = !d;
+    if (d) { detLabel.textContent = d.label; form.como_detalle.placeholder = d.placeholder; }
+    else { form.como_detalle.value = ''; setError('como_detalle', ''); }
+  }
+  form.como.addEventListener('change', syncDetalle);
+
+  // País sugerido por la clave del WhatsApp (solo si aún no eligió).
+  var PREFIJOS = [['1809', 'DO'], ['1829', 'DO'], ['1849', 'DO'], ['52', 'MX'], ['57', 'CO'], ['54', 'AR'], ['56', 'CL'], ['51', 'PE'], ['593', 'EC'],
+    ['34', 'ES'], ['1', 'US'], ['58', 'VE'], ['591', 'BO'], ['502', 'GT'], ['503', 'SV'], ['504', 'HN'], ['505', 'NI'], ['506', 'CR'],
+    ['507', 'PA'], ['595', 'PY'], ['598', 'UY']];
+  form.whatsapp.addEventListener('blur', function () {
+    if (form.pais.value) return;
+    var dg = form.whatsapp.value.replace(/[^\d+]/g, '');
+    if (dg.charAt(0) !== '+') return;
+    dg = dg.slice(1);
+    var hit = PREFIJOS.filter(function (p) { return dg.indexOf(p[0]) === 0; })
+      .sort(function (a, b) { return b[0].length - a[0].length; })[0];
+    if (hit) form.pais.value = hit[1];
+  });
+
   form.addEventListener('submit', function (ev) {
     ev.preventDefault();
     status.textContent = ''; status.className = 'form-status';
@@ -190,6 +258,11 @@
     var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
     setError('email', emailOk ? '' : 'Revisa tu correo.'); if (!emailOk) ok = false;
     setError('optin', optin ? '' : 'Necesitamos tu permiso para mandarte el enlace y los recordatorios.'); if (!optin) ok = false;
+    var pais = form.pais.value, como = form.como.value, comoDet = form.como_detalle.value.trim();
+    setError('pais', pais ? '' : 'Elige tu país.'); if (!pais) ok = false;
+    setError('como', como ? '' : 'Elige una opción.'); if (!como) ok = false;
+    var detReq = DETALLE[como] && DETALLE[como].req && !comoDet;
+    setError('como_detalle', detReq ? 'Cuéntanos dónde.' : ''); if (detReq) ok = false;
     if (!ok) return;
 
     if (!C.formEndpoint) {
@@ -201,7 +274,8 @@
     var params = new URLSearchParams(location.search);
     var eventId = uuid();
     var payload = {
-      name: name, whatsapp: wa, email: email, optin: optin, tag: C.tag || 'live-30sep',
+      name: name, whatsapp: wa, email: email, optin: optin, tag: C.tag || '',
+      pais: pais, como: como, como_detalle: comoDet,
       event_id: eventId, page_url: location.href, referrer: document.referrer || '',
       utm_source: params.get('utm_source') || '', utm_medium: params.get('utm_medium') || '',
       utm_campaign: params.get('utm_campaign') || '', utm_content: params.get('utm_content') || '',
@@ -218,7 +292,7 @@
         if (window.fbq) {
           // Coincidencia avanzada manual: el pixel hashea estos datos (SHA-256) antes de enviarlos.
           fbq('init', C.metaPixelId, { em: email.toLowerCase(), ph: wa.replace(/\D/g, ''), fn: name.split(' ')[0].toLowerCase() });
-          fbq('track', 'Lead', { content_name: C.tag || 'live-30sep' }, { eventID: eventId });
+          fbq('track', 'Lead', { content_name: C.tag || 'live' }, { eventID: eventId });
         }
         try { sessionStorage.setItem('live_name', name.split(' ')[0]); } catch (e) {}
         setTimeout(function () { location.href = '/live/gracias/'; }, 350);
