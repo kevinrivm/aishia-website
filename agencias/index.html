@@ -54,17 +54,20 @@
       box-shadow: 0 24px 70px rgba(0, 0, 0, .55);
     }
     .video iframe, #player { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    /* Toda el área del video activa el sonido; el aviso va arriba para no tapar los subtítulos */
     .play {
-      position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; gap: 10px; align-items: center; justify-content: center;
-      width: 100%; border: 0; background: rgba(13, 12, 10, .45); color: var(--text); font: 700 20px Geist, sans-serif; cursor: pointer;
+      position: absolute; inset: 0; z-index: 2; display: flex; align-items: flex-start; justify-content: center;
+      width: 100%; padding: 14px 12px 0; border: 0; background: transparent; cursor: pointer;
     }
-    .play small { color: var(--dim); font-size: 15px; font-weight: 500; }
     .play[hidden] { display: none; }
-    .play i {
-      display: grid; place-items: center; width: 84px; height: 84px; border-radius: 50%;
-      background: var(--gold); color: #17140e; font-style: normal; font-size: 30px; transition: transform .18s;
+    .play span {
+      display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; border-radius: 999px;
+      background: var(--gold); color: #17140e; font: 800 clamp(15px, 2.6vw, 19px) Geist, sans-serif;
+      box-shadow: 0 8px 26px rgba(0, 0, 0, .5); animation: pulso 1.6s ease-in-out infinite;
     }
-    .play:hover i { transform: scale(1.07); }
+    .play span i { font-style: normal; font-size: 1.25em; }
+    .play:hover span { background: var(--gold-light); }
+    @keyframes pulso { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
     .play:focus-visible, .btn:focus-visible { outline: 3px solid var(--gold-light); outline-offset: 3px; }
     .actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 26px 0 8px; }
     .btn {
@@ -102,7 +105,7 @@
       .grid, .fit, .cases { grid-template-columns: 1fr; }
       .actions .btn { width: 100%; }
     }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .play i { transition: none; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .play span { animation: none; } }
   </style>
 </head>
 <body>
@@ -114,9 +117,7 @@
       <div class="video" id="video">
         <div id="player"></div>
         <button type="button" class="play" id="play" aria-label="Activar el sonido del video">
-          <i aria-hidden="true">🔊</i>
-          <span>Toca para activar el sonido</span>
-          <small>Mira el video · 4 min</small>
+          <span><i aria-hidden="true">🔊</i> Toca para activar el sonido</span>
         </button>
       </div>
       <div class="actions">
@@ -217,6 +218,16 @@
       var f = document.querySelector('#video iframe');
       if (f) f.title = 'Lo que hay dentro de Vibe Community VIP';
     };
+    // Cuánto ven de verdad, con o sin sonido: segundos de reproducción acumulados (no la posición, que se reinicia al activar el sonido)
+    var visto = 0, marcas = { s30: false, mitad: false };
+    setInterval(function () {
+      if (!player || !player.getPlayerState || player.getPlayerState() !== 1) return;
+      visto += 1;
+      var datos = { content_name: 'vsl-' + GANCHO, sonido: player.isMuted() ? 'no' : 'si' };
+      if (!marcas.s30 && visto >= 30) { marcas.s30 = true; if (window.fbq) fbq('trackCustom', 'Video30s', datos); }
+      var dur = player.getDuration ? player.getDuration() : 0;
+      if (!marcas.mitad && dur > 0 && visto >= dur / 2) { marcas.mitad = true; if (window.fbq) fbq('trackCustom', 'VideoMitad', datos); }
+    }, 1000);
     var api = document.createElement('script');
     api.src = 'https://www.youtube.com/iframe_api';
     document.head.appendChild(api);
