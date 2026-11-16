@@ -286,8 +286,26 @@
     };
 
     btn.disabled = true; btn.textContent = 'Registrando…';
-    fetch(C.formEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json; charset=utf-8' }, body: JSON.stringify(payload) })
-      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); })
+    // Reintento: si n8n tarda o responde 5xx/429 (16-nov se saturó y devolvía 503),
+    // se reintenta sola hasta 4 veces antes de mostrar el error. Mismo event_id:
+    // n8n deduplica por WhatsApp, así que un reintento no crea registros dobles.
+    var ESPERAS = [2000, 4000, 8000];
+    function enviar(intento) {
+      var ctl = window.AbortController ? new AbortController() : null;
+      var timer = ctl ? setTimeout(function () { ctl.abort(); }, 15000) : null;
+      return fetch(C.formEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json; charset=utf-8' }, body: JSON.stringify(payload), signal: ctl ? ctl.signal : undefined })
+        .then(function (r) {
+          if (timer) clearTimeout(timer);
+          if (r.ok) return r;
+          var err = new Error('HTTP ' + r.status); err.reintentar = r.status >= 500 || r.status === 429; throw err;
+        }, function (e) { if (timer) clearTimeout(timer); e.reintentar = true; throw e; })
+        .catch(function (e) {
+          if (!e.reintentar || intento >= ESPERAS.length) throw e;
+          btn.textContent = 'Registrando… un momento';
+          return new Promise(function (ok) { setTimeout(ok, ESPERAS[intento]); }).then(function () { return enviar(intento + 1); });
+        });
+    }
+    enviar(0)
       .then(function () {
         if (window.fbq) {
           // Coincidencia avanzada manual: el pixel hashea estos datos (SHA-256) antes de enviarlos.
