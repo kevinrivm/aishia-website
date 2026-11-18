@@ -33,5 +33,12 @@ window.LIVE_CONFIG = {
 
   // Dónde se ve el live. Vacío mientras no esté programado en YouTube:
   // el calendario manda a /envivo, que redirige al live (se edita en n8n, no aquí).
-  watchUrl: 'https://kevinbelier.cloud/envivo'
+  watchUrl: 'https://kevinbelier.cloud/envivo',
+
+  // Modo en vivo: desde liveOpensMin minutos antes de startsAt hasta liveEndsAt, la página deja de pedir
+  // registro y manda directo a liveUrl («Entrar al live»). Después de liveEndsAt: «Ver la grabación».
+  // Para revisarlo antes de tiempo: /live/?vista=envivo o /live/?vista=grabacion
+  liveUrl: 'https://www.youtube.com/watch?v=KdKA4lVC57Y',
+  liveOpensMin: 20,
+  liveEndsAt: '2026-11-19T15:30:00-06:00'
 };

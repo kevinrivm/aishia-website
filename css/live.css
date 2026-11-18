@@ -197,3 +197,6 @@
 .field select:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px var(--gold-soft); }
 .has-error select { border-color: #A1301F; }
 .field[hidden] { display: none; }
+
+/* Modo en vivo (19-nov): punto rojo en la etiqueta del héroe */
+.lp-dot.lp-dot-vivo { background: #e11d2e; box-shadow: 0 0 0 4px rgba(225, 29, 46, .18); }

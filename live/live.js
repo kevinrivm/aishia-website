@@ -150,6 +150,49 @@
     tick(); setInterval(tick, 1000);
   }
 
+  // ---------- Modo en vivo / grabación (se activa solo por la hora) ----------
+  // Desde liveOpensMin antes del inicio y hasta liveEndsAt: «Estamos en vivo» + botón directo a YouTube,
+  // sin formulario. Después: «Ver la grabación». Se revisa cada 30 s para cambiar sin recargar.
+  var form0 = document.getElementById('registro');
+  if (C.liveUrl && C.startsAt && form0) {
+    var vista = (new URLSearchParams(location.search).get('vista') || '').toLowerCase();
+    var tOpen = new Date(C.startsAt).getTime() - (C.liveOpensMin || 20) * 60000;
+    var tEnd = C.liveEndsAt ? new Date(C.liveEndsAt).getTime() : new Date(C.startsAt).getTime() + 150 * 60000;
+    var estadoActual = '';
+    var estado = function () {
+      if (vista === 'envivo' || vista === 'grabacion') return vista;
+      var n = Date.now();
+      return n < tOpen ? '' : (n < tEnd ? 'envivo' : 'grabacion');
+    };
+    var aplicar = function () {
+      var e = estado();
+      if (!e || e === estadoActual) return;
+      estadoActual = e;
+      var vivo = e === 'envivo';
+      var txtBtn = vivo ? 'Entrar al live' : 'Ver la grabación';
+      document.body.classList.add('lp-modo-' + e);
+      var pill = document.querySelector('.lp-pill');
+      if (pill) pill.innerHTML = vivo ? '<span class="lp-dot lp-dot-vivo"></span> En vivo ahora · en YouTube' : '<span class="lp-dot"></span> Ya pasó · quedó grabado';
+      document.querySelectorAll('[data-countdown]').forEach(function (cd) { cd.hidden = true; cd.style.display = 'none'; });
+      form0.innerHTML =
+        '<h2>' + (vivo ? '🔴 Estamos en vivo' : 'El live ya pasó') + '</h2>' +
+        '<p>' + (vivo ? 'Entra ahora. Es gratis y no necesitas registrarte.' : 'Quedó grabado completo. Velo aquí, es gratis.') + '</p>' +
+        '<a class="btn btn-primary" href="' + C.liveUrl + '" target="_blank" rel="noopener" data-entrar-live>' + txtBtn + ' <span class="arrow">→</span></a>';
+      document.querySelectorAll('a[href="#registro"]').forEach(function (a) {
+        a.href = C.liveUrl; a.target = '_blank'; a.rel = 'noopener'; a.setAttribute('data-entrar-live', '');
+        a.innerHTML = txtBtn + (a.classList.contains('btn-sm') ? '' : ' <span class="arrow">→</span>');
+      });
+      var finalH2 = document.querySelector('.lp-final h2');
+      if (finalH2) finalH2.textContent = vivo ? 'Estamos en vivo.' : 'Quedó grabado.';
+      var stickyTxt = document.querySelector('#lp-sticky > span');
+      if (stickyTxt) stickyTxt.innerHTML = vivo ? '<b>🔴 En vivo ahora</b>' : '<b>Live grabado</b>';
+      document.querySelectorAll('[data-entrar-live]').forEach(function (a) {
+        a.addEventListener('click', function () { if (window.fbq) fbq('trackCustom', vivo ? 'EntrarLive' : 'VerGrabacion'); });
+      });
+    };
+    aplicar(); setInterval(aplicar, 30000);
+  }
+
   // ---------- Barra fija en celular (aparece cuando el formulario ya no se ve) ----------
   var sticky = document.getElementById('lp-sticky'), reg = document.getElementById('registro');
   if (sticky && reg) {
