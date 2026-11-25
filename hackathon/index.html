@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Bases, criterios y jurado del Hackathon de Vocero de Vibe Community VIP, del 26 al 30 de noviembre de 2026." />
+  <title>Hackathon de Vocero — Kevin Belier IA</title>
+  <link rel="canonical" href="https://kevinbelier.cloud/hackathon/" />
+  <meta name="robots" content="noindex" />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23121212'/%3E%3Ctext x='32' y='41' font-family='Arial,sans-serif' font-size='26' font-weight='700' fill='%23B49B50' text-anchor='middle'%3EKB%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/site.css?v=202609221118" />
+  <style>
+    .hk-lead { font-size: 19px; color: var(--ink); line-height: 1.6; margin: 0 0 8px; }
+    .hk-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 0 0 16px; }
+    .hk-step { border: 1px solid var(--line); border-radius: 12px; padding: 16px; background: var(--surface); }
+    .hk-step b { display: block; color: var(--gold-ink); font-family: var(--font-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 6px; }
+    .hk-step span { color: var(--ink); font-size: 15px; line-height: 1.45; display: block; }
+    .hk-table { width: 100%; border-collapse: collapse; margin: 0 0 16px; font-size: 15px; }
+    .hk-table th, .hk-table td { text-align: left; padding: 12px 10px; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--ink-soft); line-height: 1.5; }
+    .hk-table th { color: var(--ink); font-weight: 600; font-size: 14px; }
+    .hk-table td:last-child, .hk-table th:last-child { text-align: right; white-space: nowrap; }
+    .hk-table strong { color: var(--ink); }
+    .hk-gate { border-left: 3px solid var(--gold); padding: 12px 16px; background: var(--surface); border-radius: 0 12px 12px 0; margin: 0 0 16px; }
+    .hk-gate p { margin: 0; }
+    .hk-prizes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 0 0 16px; }
+    .hk-prize { border: 1px solid var(--line); border-radius: 12px; padding: 18px; background: var(--surface); }
+    .hk-prize h3 { margin: 0 0 6px; font-size: 17px; font-weight: 600; color: var(--ink); }
+    .hk-prize p { margin: 0; font-size: 15px; line-height: 1.5; }
+    .hk-prize .mono { display: block; margin-bottom: 8px; }
+    .hk-jury { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 0 0 16px; }
+    .hk-jury div { border: 1px solid var(--line); border-radius: 12px; padding: 16px; background: var(--surface); }
+    .hk-jury strong { display: block; margin-bottom: 4px; }
+    .hk-jury span { font-size: 14px; color: var(--muted); line-height: 1.45; display: block; }
+    @media (max-width: 720px) {
+      .hk-steps { grid-template-columns: repeat(2, 1fr); }
+      .hk-prizes, .hk-jury { grid-template-columns: 1fr; }
+      .hk-table { font-size: 14px; }
+      .hk-table th, .hk-table td { padding: 10px 6px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="shell nav-inner">
+      <a href="/" class="brand" aria-label="Kevin Belier — inicio">
+        <span class="brand-mark">KB</span>
+        <span>Kevin Belier</span>
+      </a>
+      <a href="/comunidad" class="btn btn-ghost btn-sm">Ir a la comunidad</a>
+    </div>
+  </nav>
+
+  <main class="legal">
+    <div class="shell legal-inner">
+      <span class="mono gold">Vibe Community VIP · Noviembre 2026</span>
+      <h1>Hackathon de Vocero</h1>
+      <p class="legal-updated">Bases vigentes desde el 25 de noviembre de 2026</p>
+
+      <p class="hk-lead"><strong>El reto:</strong> deja un agente de Vocero listo para venderle a un giro concreto y demuestra que contesta bien.</p>
+      <p>Eliges un tipo de negocio (inmobiliaria, clínica, taller, escuela…) y con Claude Code y el MCP de Vocero le configuras su agente de WhatsApp. No necesitas programar.</p>
+
+      <h2>1. Fechas</h2>
+      <div class="hk-steps">
+        <div class="hk-step"><b>Jue 26 · 3 p. m.</b><span>Arranque en vivo</span></div>
+        <div class="hk-step"><b>26 → 30</b><span>Construyes</span></div>
+        <div class="hk-step"><b>Lun 30 · 11:59 p. m.</b><span>Cierre de entregas</span></div>
+        <div class="hk-step"><b>Por confirmar</b><span>Ganadores, en vivo</span></div>
+      </div>
+      <p>Todas las horas son de la Ciudad de México.</p>
+
+      <h2>2. Quién participa</h2>
+      <ul>
+        <li>Cualquier miembro de pago activo de Vibe Community VIP el 26 de noviembre de 2026.</li>
+        <li>Solo o en equipo de hasta 2 personas. Cada persona participa en un solo proyecto.</li>
+        <li>No participan los miembros del jurado.</li>
+      </ul>
+
+      <h2>3. Qué entregas</h2>
+      <p>Un comentario en el post del hackathon en la comunidad, antes del cierre, con:</p>
+      <ul>
+        <li><strong>El giro</strong> y a quién se lo venderías, con el precio que le cobrarías.</li>
+        <li><strong>Los 3 problemas reales de ese giro</strong> que tu agente resuelve, y cómo los conoces (trabajaste ahí, tienes un cliente, platicaste con un dueño…).</li>
+        <li><strong>Un video de 3 minutos como máximo</strong> en el que se vea al agente contestando una conversación difícil: una pregunta de precio, una objeción, una cita y una petición de hablar con una persona.</li>
+        <li><strong>El prompt o la skill</strong> con la que lo configuraste, para que otro miembro pueda repetirlo.</li>
+        <li><em>Opcional:</em> la prueba de que un dueño real de ese giro lo vio y te respondió (captura o audio, con su permiso).</li>
+      </ul>
+
+      <h2>4. Cómo se califica</h2>
+      <div class="hk-gate">
+        <p><strong>Primero, el filtro: tiene que funcionar.</strong> Si en el video no se ve al agente contestando de verdad, el proyecto no pasa a calificación. Vale probarlo con simulaciones, sin WhatsApp.</p>
+      </div>
+      <p>Cada jurado califica cada proyecto que pasa el filtro, de 1 a 5 en cada criterio. Se multiplica por el peso y se suma.</p>
+      <table class="hk-table">
+        <thead>
+          <tr><th>Criterio</th><th>La pregunta del jurado</th><th>Peso</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Potencial de venta</strong></td><td>¿Un dueño de ese giro lo pagaría? ¿El precio tiene sentido?</td><td>30 %</td></tr>
+          <tr><td><strong>Conocimiento del giro</strong></td><td>¿Resuelve los problemas reales de esa industria? ¿Habla como ella y anticipa sus casos difíciles?</td><td>25 %</td></tr>
+          <tr><td><strong>Calidad de las respuestas</strong></td><td>¿Aguanta la conversación difícil sin inventar datos y pasa a una persona cuando debe?</td><td>25 %</td></tr>
+          <tr><td><strong>Originalidad</strong></td><td>¿Es un giro o un uso que no hemos visto en la comunidad?</td><td>10 %</td></tr>
+          <tr><td><strong>Presentación</strong></td><td>¿El video se entiende en 3 minutos y se ve profesional, como para enseñárselo a un cliente?</td><td>10 %</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Puntos extra (hasta +10 %):</strong> la prueba de que un dueño real lo vio y respondió, o una función nueva en Vocero hecha con Claude Code que ese giro pediría.</p>
+      <p>En caso de empate gana el de mayor puntaje en potencial de venta.</p>
+
+      <h2>5. Jurado</h2>
+      <div class="hk-jury">
+        <div><strong>Un dueño de negocio</strong><span>Califica como el que paga: ¿lo compraría? (nombre por confirmar)</span></div>
+        <div><strong>Un miembro que ya vende Vocero</strong><span>Califica como el que vende: ¿lo podría vender esta semana? (nombre por confirmar)</span></div>
+        <div><strong>Kevin Belier</strong><span>Califica si funciona y si se puede repetir.</span></div>
+      </div>
+      <p>Las calificaciones de cada jurado se publican junto con los ganadores.</p>
+
+      <h2>6. Premios y reconocimientos</h2>
+      <div class="hk-prizes">
+        <div class="hk-prize"><span class="mono gold">1.er lugar</span><h3>3 meses gratis</h3><p>De membresía en Vibe Community VIP, y su proyecto en el salón de la fama.</p></div>
+        <div class="hk-prize"><span class="mono gold">Premio del público</span><h3>1 mes gratis</h3><p>Al proyecto con más votos de la comunidad en el post de entregas.</p></div>
+        <div class="hk-prize"><span class="mono gold">Mención «Primer cliente»</span><h3>1 mes gratis</h3><p>A la mejor prueba de que un dueño real lo vio y quiso saber más.</p></div>
+      </div>
+      <ul>
+        <li><strong>Salón de la fama:</strong> los ganadores aparecen en esta página con su video y su nombre.</li>
+        <li><strong>Credencial digital</strong> de ganador para compartir en sus redes.</li>
+        <li><strong>Quien entregue un proyecto que pase el filtro</strong> aparece en la lista de participantes de esta página.</li>
+        <li>Los meses gratis se aplican a la membresía del ganador. No se cambian por dinero ni se transfieren a otra persona. Se pueden acumular un premio y una mención.</li>
+      </ul>
+
+      <h2>7. Reglas</h2>
+      <ul>
+        <li>El proyecto se hace entre el 26 y el 30 de noviembre. Vale usar cualquier herramienta de IA.</li>
+        <li><strong>Sin datos reales de clientes</strong> en el video: usa nombres, teléfonos y precios inventados, o tápalos.</li>
+        <li><strong>Tu proyecto es tuyo.</strong> Al participar autorizas que tu video y tu nombre se muestren en la comunidad y en esta página. Para usarlo en YouTube u otro lugar público, te pediremos permiso aparte.</li>
+        <li>El jurado puede descalificar un proyecto copiado, que incumpla las políticas de Meta o que se entregue fuera de tiempo.</li>
+        <li>Si ningún proyecto pasa el filtro, el premio puede declararse desierto.</li>
+        <li>La decisión del jurado es final.</li>
+      </ul>
+
+      <h2>8. Dudas</h2>
+      <p>Pregunta en los comentarios del post del hackathon en la comunidad.</p>
+      <p>El hackathon lo organiza Kevin Belier IA. Aplican también nuestros <a href="/terminos/">Términos y condiciones</a> y nuestro <a href="/aviso-de-privacidad/">Aviso de privacidad</a>.</p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="shell">
+      <div class="footer-legal">
+        <p><a href="/aviso-de-privacidad/">Aviso de privacidad</a> · <a href="/terminos/">Términos y condiciones</a></p>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Kevin Belier IA</span>
+        <span>Todos los derechos reservados</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
