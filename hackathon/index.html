@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Bases, criterios y jurado del Hackathon de Vocero de Vibe Community VIP, del 26 al 30 de noviembre de 2026." />
+  <meta name="description" content="Bases, criterios y jurado del Hackathon de Vocero de Vibe Community VIP, del 26 de noviembre al 1 de diciembre de 2026." />
   <title>Hackathon de Vocero — Kevin Belier IA</title>
   <link rel="canonical" href="https://kevinbelier.cloud/hackathon/" />
   <meta name="robots" content="noindex" />
@@ -35,6 +35,10 @@
     .hk-jury div { border: 1px solid var(--line); border-radius: 12px; padding: 16px; background: var(--surface); }
     .hk-jury strong { display: block; margin-bottom: 4px; }
     .hk-jury span { font-size: 14px; color: var(--muted); line-height: 1.45; display: block; }
+    .hk-prizes-one { grid-template-columns: minmax(0, 360px); }
+    .hk-shot { margin: 0 0 16px; }
+    .hk-shot img { display: block; width: 100%; max-width: 560px; height: auto; border-radius: 12px; border: 1px solid var(--line); }
+    .hk-shot figcaption { font-size: 14px; color: var(--muted); margin-top: 8px; }
     @media (max-width: 720px) {
       .hk-steps { grid-template-columns: repeat(2, 1fr); }
       .hk-prizes, .hk-jury { grid-template-columns: 1fr; }
@@ -67,21 +71,26 @@
       <h2>1. Fechas</h2>
       <div class="hk-steps">
         <div class="hk-step"><b>Jue 26 · 3 p. m.</b><span>Arranque en vivo</span></div>
-        <div class="hk-step"><b>26 → 30</b><span>Construyes</span></div>
-        <div class="hk-step"><b>Lun 30 · 11:59 p. m.</b><span>Cierre de entregas</span></div>
-        <div class="hk-step"><b>Por confirmar</b><span>Ganadores, en vivo</span></div>
+        <div class="hk-step"><b>26 nov → 1 dic</b><span>Construyes</span></div>
+        <div class="hk-step"><b>Mar 1 dic · antes de las 3 p. m.</b><span>Cierre de entregas</span></div>
+        <div class="hk-step"><b>Mar 1 dic · 3 p. m.</b><span>Premiación en vivo</span></div>
       </div>
       <p>Todas las horas son de la Ciudad de México.</p>
 
       <h2>2. Quién participa</h2>
       <ul>
         <li>Cualquier miembro de pago activo de Vibe Community VIP el 26 de noviembre de 2026.</li>
-        <li>Solo o en equipo de hasta 2 personas. Cada persona participa en un solo proyecto.</li>
+        <li>La participación es individual: un proyecto por persona.</li>
         <li>No participan los miembros del jurado.</li>
       </ul>
 
       <h2>3. Qué entregas</h2>
-      <p>Un comentario en el post del hackathon en la comunidad, antes del cierre, con:</p>
+      <p>Un post nuevo en la comunidad, en la categoría <strong>Logros 🦾</strong>, antes del cierre. Empieza el título con «Hackathon» y el giro, por ejemplo: «Hackathon · Mi agente de Vocero para inmobiliarias».</p>
+      <figure class="hk-shot">
+        <img src="/assets/hackathon-logros.png" alt="Editor de post de la comunidad con la categoría Logros seleccionada en el menú de categorías" width="698" height="480" loading="lazy" />
+        <figcaption>Al escribir tu post, abre «Select a category» y elige «Logros 🦾».</figcaption>
+      </figure>
+      <p>El post lleva:</p>
       <ul>
         <li><strong>El giro</strong> y a quién se lo venderías, con el precio que le cobrarías.</li>
         <li><strong>Los 3 problemas reales de ese giro</strong> que tu agente resuelve, y cómo los conoces (trabajaste ahí, tienes un cliente, platicaste con un dueño…).</li>
@@ -112,30 +121,26 @@
 
       <h2>5. Jurado</h2>
       <div class="hk-jury">
-        <div><strong>Un dueño de negocio</strong><span>Califica como el que paga: ¿lo compraría? (nombre por confirmar)</span></div>
-        <div><strong>Un miembro que ya vende Vocero</strong><span>Califica como el que vende: ¿lo podría vender esta semana? (nombre por confirmar)</span></div>
+        <div><strong>Félix W. Soto Cruz</strong><span>Dueño de negocio y miembro de la comunidad. Califica como el que paga: ¿lo compraría?</span></div>
+        <div><strong>David Jirasek</strong><span>Miembro que ya vende Vocero. Califica como el que vende: ¿lo podría vender esta semana?</span></div>
         <div><strong>Kevin Belier</strong><span>Califica si funciona y si se puede repetir.</span></div>
       </div>
-      <p>Las calificaciones de cada jurado se publican junto con los ganadores.</p>
+      <p>Las calificaciones de cada jurado se publican junto con el ganador.</p>
 
-      <h2>6. Premios y reconocimientos</h2>
-      <div class="hk-prizes">
-        <div class="hk-prize"><span class="mono gold">1.er lugar</span><h3>3 meses gratis</h3><p>De membresía en Vibe Community VIP, y su proyecto en el salón de la fama.</p></div>
-        <div class="hk-prize"><span class="mono gold">Premio del público</span><h3>1 mes gratis</h3><p>Al proyecto con más votos de la comunidad en el post de entregas.</p></div>
-        <div class="hk-prize"><span class="mono gold">Mención «Primer cliente»</span><h3>1 mes gratis</h3><p>A la mejor prueba de que un dueño real lo vio y quiso saber más.</p></div>
+      <h2>6. Premio y reconocimiento</h2>
+      <div class="hk-prizes hk-prizes-one">
+        <div class="hk-prize"><span class="mono gold">1.er lugar</span><h3>3 meses gratis</h3><p>De membresía en Vibe Community VIP, más un <strong>diploma digital</strong> de ganador para compartir en tus redes.</p></div>
       </div>
       <ul>
-        <li><strong>Salón de la fama:</strong> los ganadores aparecen en esta página con su video y su nombre.</li>
-        <li><strong>Credencial digital</strong> de ganador para compartir en sus redes.</li>
-        <li><strong>Quien entregue un proyecto que pase el filtro</strong> aparece en la lista de participantes de esta página.</li>
-        <li>Los meses gratis se aplican a la membresía del ganador. No se cambian por dinero ni se transfieren a otra persona. Se pueden acumular un premio y una mención.</li>
+        <li>Los meses gratis se aplican a la membresía del ganador. No se cambian por dinero ni se transfieren a otra persona.</li>
+        <li>El ganador se anuncia en vivo en la sesión del martes 1 de diciembre a las 3 p. m.</li>
       </ul>
 
       <h2>7. Reglas</h2>
       <ul>
-        <li>El proyecto se hace entre el 26 y el 30 de noviembre. Vale usar cualquier herramienta de IA.</li>
+        <li>El proyecto se hace entre el 26 de noviembre y el 1 de diciembre. Vale usar cualquier herramienta de IA.</li>
         <li><strong>Sin datos reales de clientes</strong> en el video: usa nombres, teléfonos y precios inventados, o tápalos.</li>
-        <li><strong>Tu proyecto es tuyo.</strong> Al participar autorizas que tu video y tu nombre se muestren en la comunidad y en esta página. Para usarlo en YouTube u otro lugar público, te pediremos permiso aparte.</li>
+        <li><strong>Tu proyecto es tuyo.</strong> Al participar autorizas que tu video y tu nombre se muestren en la comunidad. Para usarlo en YouTube u otro lugar público, te pediremos permiso aparte.</li>
         <li>El jurado puede descalificar un proyecto copiado, que incumpla las políticas de Meta o que se entregue fuera de tiempo.</li>
         <li>Si ningún proyecto pasa el filtro, el premio puede declararse desierto.</li>
         <li>La decisión del jurado es final.</li>
