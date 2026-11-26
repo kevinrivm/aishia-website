@@ -14,6 +14,10 @@ RUN rm -f /usr/share/nginx/html/Dockerfile \
            /usr/share/nginx/html/nginx.conf \
            /usr/share/nginx/html/.gitignore
 
+# Qué commit está vivo: kevinbelier.cloud/version.txt
+ARG SOURCE_COMMIT=desconocido
+RUN echo "$SOURCE_COMMIT" > /usr/share/nginx/html/version.txt
+
 EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]

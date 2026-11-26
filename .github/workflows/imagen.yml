@@ -1,0 +1,79 @@
+name: Imagen
+
+# La imagen de producción se construye aquí y no en el VPS. Coolify solo la
+# descarga (Dockerfile.deploy).
+
+on:
+  push:
+    branches: [main]
+    # Ajusta: lo que no cambia la imagen no debe gastar minutos ni desplegar.
+    paths-ignore:
+      - "docs/**"
+      - ".gitignore"
+      - "**/*.md"
+  workflow_dispatch:
+
+# Dos merges seguidos: basta con el último commit, que ya trae los dos.
+concurrency:
+  group: imagen-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  # ghcr exige minúsculas: si el dueño o el repo tienen mayúsculas, escríbelo a mano.
+  IMAGEN: ghcr.io/kevinrivm/aishia-website
+
+jobs:
+  imagen:
+    name: construir · subir · desplegar
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # Etiqueta = commit completo: Dockerfile.deploy pide exactamente esta.
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ env.IMAGEN }}:${{ github.sha }}
+          # Si el bundle hornea variables públicas, pásalas aquí, p. ej.:
+          #   NEXT_PUBLIC_URL=${{ vars.NEXT_PUBLIC_URL }}
+          build-args: |
+            SOURCE_COMMIT=${{ github.sha }}
+          # Sin atestación: una sola entrada por imagen (la limpieza cuenta entradas).
+          provenance: false
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      # Apagado hasta configurar Coolify: la variable DEPLOY_DESDE_ACTIONS=on lo enciende.
+      # Token de Coolify con permiso solo de `deploy`. Si Coolify falla, el job queda en rojo.
+      - name: Pedir el deploy a Coolify
+        if: vars.DEPLOY_DESDE_ACTIONS == 'on'
+        env:
+          COOLIFY_URL: ${{ vars.COOLIFY_URL }}
+          COOLIFY_APP_UUID: ${{ vars.COOLIFY_APP_UUID }}
+          COOLIFY_DEPLOY_TOKEN: ${{ secrets.COOLIFY_DEPLOY_TOKEN }}
+        run: |
+          curl --fail-with-body --silent --show-error --max-time 60 --retry 2 --retry-all-errors --request POST \
+            -H "Authorization: Bearer $COOLIFY_DEPLOY_TOKEN" \
+            "$COOLIFY_URL/api/v1/deploy?uuid=$COOLIFY_APP_UUID"
+
+      # GitHub Free incluye 0.5 GB de paquetes privados: guarda las 3 últimas.
+      - name: Borrar imágenes viejas
+        continue-on-error: true
+        uses: actions/delete-package-versions@v5
+        with:
+          package-name: ${{ github.event.repository.name }}
+          package-type: container
+          min-versions-to-keep: 3

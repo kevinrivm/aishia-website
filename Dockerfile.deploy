@@ -1,0 +1,13 @@
+# Lo que Coolify "construye": nada.
+#
+# La imagen real sale del `Dockerfile` en GitHub Actions
+# (.github/workflows/imagen.yml) y se sube a ghcr.io con el commit como
+# etiqueta. Aquí solo se descarga la del commit que Coolify está desplegando,
+# para que el servidor de AISHIA no compile nada.
+#
+# Coolify pasa SOURCE_COMMIT (requiere include_source_commit_in_build=true).
+# Si la imagen de ese commit no existe, este build falla y sigue corriendo el
+# contenedor anterior.
+ARG IMAGEN=ghcr.io/kevinrivm/aishia-website
+ARG SOURCE_COMMIT
+FROM ${IMAGEN}:${SOURCE_COMMIT}
